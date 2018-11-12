@@ -5,4 +5,6 @@
 2. 画矩形盒，矩形盒两边分别对应数据的两个四分位数（Q1和Q3），在矩形盒的内部中位数位置附近画一条黑色的条带。
 3. 在Q3+1.5IQR（IQR表示四分位距）和Q1-1.5IQR这两处的位置画一条与中位数位置一样的线段，这两个线段表示异常值（outliers）截断点，这两个线段位置表示的是最大非异常值和最小非异常值。
 
-![image](https://github.com/github16cp/CS_Notes/tree/master/dataVisualization/boxplot1.jpg)
+![image](https://github.com/github16cp/CS_Notes/blob/master/dataVisualization/boxplot1.jpg)
+
+![image](https://github.com/github16cp/CS_Notes/blob/master/dataVisualization/boxplot2.jpg)
