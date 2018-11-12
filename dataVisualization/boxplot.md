@@ -5,11 +5,11 @@
 2. 画矩形盒，矩形盒两边分别对应数据的两个四分位数（Q1和Q3），在矩形盒的内部中位数位置附近画一条黑色的条带。
 3. 在Q3+1.5xIQR（IQR表示四分位距）和Q1-1.5xIQR这两处的位置画一条与中位数位置一样的线段，这两个线段表示异常值（outliers）截断点，这两个线段位置表示的是最大非异常值和最小非异常值，两者之间称为內限；在Q3+3xIQR和Q3-3xIQR处画两条线段，称其为外限。处于內限以外的都是异常值，在內限与外限之间的异常值为温和异常值（mild outliers），在外限之外的都是极端异常值（extreme outliers）。
 <p align="center">
-    <img src="https://github.com/github16cp/CS_Notes/blob/master/dataVisualization/boxplot1.jpg" alt="Sample"  width="600" height="450">
+    <img src="https://github.com/github16cp/CS_Notes/blob/master/dataVisualization/boxplot1.jpg" alt="Sample"  width="550" height="400">
 </p>
 
 <p align="center">
-    <img src="https://github.com/github16cp/CS_Notes/blob/master/dataVisualization/boxplot2.jpg" alt="Sample"  width="600" height="450">
+    <img src="https://github.com/github16cp/CS_Notes/blob/master/dataVisualization/boxplot2.jpg" alt="Sample"  width="550" height="400">
 </p>
 ### 箱线图的功能
 1. 直观显示数据中的异常值；
