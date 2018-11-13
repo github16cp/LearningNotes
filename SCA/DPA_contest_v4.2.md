@@ -6,3 +6,7 @@ wrapper是通过FIFO（FIFO类似于一个文件，用于wrapper和attack progra
 ### 攻击案例
 examples/v4_2/attack_windows.m，在这个文件里需要修改的是输入FIFO的名称、输出FIFO的名称、攻击的子密钥的数量
 、攻击代码（共需要填写4项）
+
+如果wrapper使用fork mode(Unix)，wrapper自己启动；windows上wrapper使用FIFO mode，wrapper会产生两个特别的文件（这个文件没有产生啊？？？）这个时候attack必须手动启动，而且必须打开这两个文件，在windows上`\\.\pipe\xxx_from_wrapper`只读模式，`\\.\pipe\xxx_to_wrapper`只写模式（能不能认真读说明文档！）
+
+接着，从wrapper中读数据，attack program从`\\.\pipe\xxx_from_wrapper`中读，发送数据`\\.\pipe\xxx_to_wrapper`，xxx表示fifo
