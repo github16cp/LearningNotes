@@ -1,3 +1,7 @@
+GitHub[帮助手册](https://help.github.com/)
+
+Writing on GitHub(https://help.github.com/categories/writing-on-github/)
+
 # 欢迎使用 Cmd Markdown 编辑阅读器
 标签（空格分隔）： 使用手册
 
@@ -183,9 +187,9 @@ Bob-->Alice: I am good thanks!
 作者 [@ghosert][3]     
 2016 年 07月 07日    
 
-[^LaTeX]: 支持 **LaTeX** 编辑显示支持，例如：$\sum_{i=1}^n a_i=0$， 访问 [MathJax][4] 参考更多使用方法。
+[LaTeX]: 支持 **LaTeX** 编辑显示支持，例如：$\sum_{i=1}^n a_i=0$， 访问 [MathJax][4] 参考更多使用方法。
 
-[^code]: 代码高亮功能支持包括 Java, Python, JavaScript 在内的，**四十一**种主流编程语言。
+[code]: 代码高亮功能支持包括 Java, Python, JavaScript 在内的，**四十一**种主流编程语言。
 
 [1]: https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown
 [2]: https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown#cmd-markdown-高阶语法手册
