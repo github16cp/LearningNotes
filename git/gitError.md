@@ -3,7 +3,7 @@
 
 从远程库git clone的时候出现Permission Denied
 
-Solution: 原因本机公钥（publickey）未添加至github,所以无法识别。 因而需要获取本地电脑公钥，然后登录github账号，添加公钥至github就OK了。
+Solution: 原因本机公钥（publickey）未添加至github，所以无法识别。 因而需要获取本地电脑公钥，然后登录github账号，添加公钥至github就OK了。
  1. 设置git的user.name和user.email
  ```
  git config --global user.name "yourname"
