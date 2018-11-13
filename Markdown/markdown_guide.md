@@ -186,8 +186,3 @@ Bob-->Alice: I am good thanks!
 
 作者 [@ghosert][3]     
 2016 年 07月 07日    
-
-[1]: https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown
-[2]: https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown#cmd-markdown-高阶语法手册
-[3]: http://weibo.com/ghosert
-[4]: http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference
