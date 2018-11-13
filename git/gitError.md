@@ -23,3 +23,7 @@ Solution: 原因本机公钥（publickey）未添加至github，所以无法识�
  vim id_rsa.pub
  ```
  序列码即为公钥，复制序列码，包含ssh-rsa等标识。然后登录github，进入settings--->ssh and gpg keys-->new ssh key 添加即可，其中title自行命名
+ 5. git clone
+ ```
+ git clone @github.com:yourname/Python.git
+ ```
