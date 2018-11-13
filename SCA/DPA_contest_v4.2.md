@@ -89,5 +89,41 @@ results文件的名字可以在开始指定，目录下多出了很多的文件�
 4 0.000000
 5 0.000000
 ```
+分析对于v4_2错误的原因：轨迹文件解压之后，保持原来的文件名不变，即k00，trc.bz2文件不用解压缩，再次测试
+
+测试结果：
+```
+D:\ML-SCA\SCA\DPA_traces\attack_wrapper-2.2.0>attack_wrapper -i 5 -d D:\ML-SCA\SCA\DPA_traces\DPA_contestv4_2 -x D:\ML-SCA\SCA\DPA_traces\dpav4_2_index -e v4_2 fifo
+D - Output filename = results (abort if exists)
+D - FIFO mode
+D - Base name for FIFOs = fifo
+D - Compatibility mode (v2) = disabled
+D - Traces will be read from directory D:\ML-SCA\SCA\DPA_traces\DPA_contestv4_2
+D - Using index file D:\ML-SCA\SCA\DPA_traces\dpav4_2_index
+D - We will check if traces are available
+D - Offsets/Shuffles are not provided to the attack
+D - Samples are transfered as floats
+I - Reading index file (v4_2)...
+D - Total number of traces in the index file = 5
+D - Total number of traces available = 5
+D - Total number of keys in the index file = 1
+D - Total number of keys available = 1
+D - Key #00 (8249ceb658c71d41d7b734449629ab97): 5 traces available
+D - Key # = 0
+D - # of traces = 5
+I - Preparing the results file...
+I - FIFO Wrapper -> Attack: \\.\pipe\fifo_from_wrapper
+I - FIFO Attack -> Wrapper: \\.\pipe\fifo_to_wrapper
+I - Sending # of iterations (5)
+I - The attack is ready!
+I - Trace #000000: Reading trace / Sending trace / Waiting for results / Saving results / Done (251.9 s) [                ]
+I - Trace #000001: Reading trace / Sending trace / Waiting for results / Saving results / Done (249.4 s) [                ]
+I - Trace #000002: Reading trace / Sending trace / Waiting for results / Saving results / Done (249.6 s) [                ]
+I - Trace #000003: Reading trace / Sending trace / Waiting for results / Saving results / Done (249.7 s) [                ]
+I - Trace #000004: Reading trace / Sending trace / Waiting for results / Saving results / Done (1129.2 s) [                ]
+I - Closing the results file...
+I - FIFOs closed
+```
+此时显示可以成功读取能量轨迹
 -------
-已经成功的读取了能量轨迹，目标实现SVM的攻击，距离目标还是好远好远啊
+目标实现SVM的攻击，距离目标还是好远好远啊
