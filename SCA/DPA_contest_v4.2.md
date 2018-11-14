@@ -190,4 +190,7 @@ mask set
 
 实验过程中出现`Permission Denied`，将自己建的results文件夹删除后没有这个问题，或者文件不使用results。
 
+问题2 在启动wrapper之后再启动attack，attack称找不到路径，重启计算机
+
+
 目标实现SVM的攻击，距离目标还是好远好远啊
