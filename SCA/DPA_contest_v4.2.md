@@ -125,5 +125,26 @@ I - Closing the results file...
 I - FIFOs closed
 ```
 此时显示可以成功读取能量轨迹
+
 -------
+### AES128实现
+基于RSM（旋转S盒掩码），选择的掩码值是公开的（16个），根据offset（0-15）确定掩码值，所以第一步就是恢复出掩码，也就是offset。
+
+各位大佬们在各种传统方法上做的已经很深了，自己想要做出些，还是要深入钻研在方法或者方法组合上，找到一个突破点
+
+现在已有的攻击：[参考论文](http://www.dpacontest.org/v4/data/v4_2/article_implem_dpav42.pdf)
+
+分析一下下载的v4_2数据集的特征，查看[dpav4_2_index](http://www.dpacontest.org/v4/traces/v4_2/dpav4_2_index)文件
+Example:
+8249CEB658C71D41D7B734449629AB97 73136C16F1E0CE864A2A2C6C8400CF01 BDAA8B4BE13E13CD5250685B67443F84 AB5D4F761C28E039 1A9406F3B2857CED 05C229626F9D8B39 k00 DPACV42_000000.trc.bz2
+> * 1st column: the AES-128 key (128 bits represented as 32 hexadecimal digits)
+>* 2nd column: the plaintext (128 bits represented as 32 hexadecimal digits)
+>* 3rd column: the ciphertext (128 bits represented as 32 hexadecimal digits)
+> * 4th column: the Shuffle0 permutation (see the algorithm specifications, 16 x 1 hexadecimal digit)
+> * 5th column: the Shuffle10 permutation (see the algorithm specifications, 16 x 1 hexadecimal digit) 
+> * 6th column: the offsets (see the algorithm specifications, 16 x 1 hexadecimal digit)
+> * 7th column: the name of the directory (below the top-level directory DPA_contestv4_2) where the trace is stored
+> * 8th column: the name of the trace
+
+此处的`k00`指的是子目录，不是密钥
 目标实现SVM的攻击，距离目标还是好远好远啊
