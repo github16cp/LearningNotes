@@ -76,7 +76,7 @@ if (strcmp(method,'kocher'))
     disp('Predicting the instantaneous power consumption ...');
     % 获取假设能量模型，并且取出依赖于中间值的某一个bit
     power_consumption = bitget(after_sbox,1);%返回每个元素最低第一bit位的值（1 or 0），和原来的矩阵维度相同
-    %power_consumption = bitget(after_sbox,8);
+    %power_consumption = bitget(after_sbox,8); 这儿采用的是最低bit，即最低有效位，其他bit可不可以呢，经过实验
     % correlate the predicted power consumption with the real power 
     % consumption
     disp('Generating the difference traces ...');% 产生的差分能量轨迹
@@ -126,3 +126,6 @@ show_plots(key_traces,1,256,1,800)  % 800代表着ylabel（-800，800）
 <p align="center">
     <img src="https://github.com/github16cp/CS_Notes/blob/master/SCA/one_bit_DPA.jpg" alt="Sample"  width="550" height="400">
 </p>
+
+在具体实验过程中，最低有效位的效果比较好，当取第4bit的时候（每个数用8bit表示，0-255）效果也很不错，为什么呢？尤其令我感到困惑的是，在选择最高有效位进行攻击的时候，差分结果也没有明显的尖峰，但理论上来说，最低有效位（LSB）和最高有效位（MSB）的影响应该是差不多的，但是差分结果尤其的差为什么呢？**这一个点**是不是也可以深入探究一下。
+单比特DPA攻击是存在问题的，因为每个比特之间是存在关系的，并不是我们独立的认为的每个bit可以对计算过程独立地产生影响。
