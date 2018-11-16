@@ -122,3 +122,7 @@ key_traces = demo_dpa('WS1.mat',1,256,'kocher');
 show_plots(key_traces,1,256,1,800)  % 800代表着ylabel（-800，800）
 ```
 可以看到在第44张图中获得了较为清晰的尖峰，也就是对应着差分能量轨迹矩阵的第44行，对应的猜测密钥为43
+
+<p align="center">
+    <img src="https://github.com/github16cp/CS_Notes/blob/master/SCA/one_bit_DPA.jpg" alt="Sample"  width="550" height="400">
+</p>
