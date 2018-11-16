@@ -1,5 +1,12 @@
-### 单比特DPA攻击实验
+## 单比特DPA攻击实验
 参考[DPAbook](http://dpabook.iaik.tugraz.at/onlinematerial/matlabscripts/index.htm)实验步骤
+
+### 实验步骤
+首先，读取能量轨迹
+
+然后，针对每个明文输入，对每个猜测密钥计算中间值
+
+最后，针对每个密钥计算差分能量轨迹
 
 ### 攻击实验代码
 ```Matlab
@@ -109,12 +116,6 @@ if (strcmp(method,'correlation'))
 
 end
 ```
-首先，读取能量轨迹
-
-然后，针对每个明文输入，对每个猜测密钥计算中间值
-
-最后，针对每个密钥计算差分能量轨迹
-
 ### 实验结果
 ```Matlab
 key_traces = demo_dpa('WS1.mat',1,256,'kocher');
