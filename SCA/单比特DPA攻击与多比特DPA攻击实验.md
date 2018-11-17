@@ -147,7 +147,9 @@ show_plots(key_traces,1,256,1,1)
 ```
 ## 攻击结果
 在猜测密钥为43时的攻击结果为
-
+<p align="center">
+    <img src="https://github.com/github16cp/CS_Notes/blob/master/SCA/correlation.jpg" alt="Sample"  width="550" height="400">
+</p>
 
 ## 思考
 1. Kocher的攻击方法和相关系数的攻击方法有什么不同之处？哪个攻击效果更好？哪个更加容易？
