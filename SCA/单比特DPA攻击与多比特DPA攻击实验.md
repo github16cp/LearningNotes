@@ -163,3 +163,11 @@ show_plots(key_traces,1,256,1,1)
 
 在实际实验中，有很多猜测密钥对应的图都有尖峰，没有区分出来
 
+### 实验程序清单
+实验指导手册：`WS1-Guided-Exercise.pdf`
+
+数据集： `WS1.data`
+
+攻击代码：`demo_dpa.m`
+
+攻击结果绘图：`show_plot.m`
