@@ -7,6 +7,8 @@
 
 [DPA Contest](http://www.dpacontest.org/home/)
 
+[HDF5 for Python](https://www.h5py.org/)
+
 ### 作业  
 [coursera](https://www.coursera.org/learn/machine-learning/home/welcome)
 
