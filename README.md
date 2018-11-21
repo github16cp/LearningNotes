@@ -16,6 +16,10 @@
 ### keras
 [keras](https://github.com/keras-team/keras)
 
+[keras Document](https://keras.io/)
+
+[keras中文文档](https://keras-cn.readthedocs.io/en/latest/)
+
 ### Pytorch 
 [pytorch官网](https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html)
 
