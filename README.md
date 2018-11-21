@@ -24,7 +24,8 @@
 [pytorch官网](https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html)
 
 ### C++
-剑指Offer题解
+
+[剑指Offer题解](https://www.nowcoder.com/957917052)
 
 [牛客网](https://www.nowcoder.com/957917052)
 
