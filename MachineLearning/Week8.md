@@ -27,3 +27,5 @@
 ![p4](https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p4.PNG)
 
 ![p5](https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p5.PNG)
+
+<div align="center"> <img src="https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p5.PNG" width="500"/> </div><br>
