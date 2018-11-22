@@ -1,13 +1,13 @@
 ## Unsupervised Learning
-![question_1](https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/1.PNG)
+<div align="center"> <img src="https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/1.PNG" width="600"/> </div><br>
 
-![question_2](https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/2.PNG)
+<div align="center"> <img src="https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/2.PNG" width="600"/> </div><br>
 
-![question_3](https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/3.PNG)
+<div align="center"> <img src="https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/3.PNG" width="600"/> </div><br>
 
-![question_4](https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/4.PNG)
+<div align="center"> <img src="https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/4.PNG" width="600"/> </div><br>
 
-![question_5](https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/5.PNG)
+<div align="center"> <img src="https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/5.PNG" width="600"/> </div><br>
 
 ## Principal Component Analysis
 
