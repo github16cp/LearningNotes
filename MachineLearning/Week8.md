@@ -10,20 +10,21 @@
 ![question_5](https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/5.PNG)
 
 ## Principal Component Analysis
-![p_1](https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p1_1.PNG)
 
-![p_2](https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p1_2.PNG)
+<div align="center"> <img src="https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p1_1.PNG" width="600"/> </div><br>
 
-![p_3](https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p1_3.PNG)
+<div align="center"> <img src="https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p1_2.PNG" width="600"/> </div><br>
 
-![p_4](https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p1_4.PNG)
+<div align="center"> <img src="https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p1_3.PNG" width="600"/> </div><br>
 
-![p_5](https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p1_5.PNG)
+<div align="center"> <img src="https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p1_4.PNG" width="600"/> </div><br>
 
-<div align="center"> <img src="https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p2.PNG" width="550"/> </div><br>
+<div align="center"> <img src="https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p1_5.PNG" width="600"/> </div><br>
 
-<div align="center"> <img src="https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p3.PNG" width="550"/> </div><br>
+<div align="center"> <img src="https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p2.PNG" width="600"/> </div><br>
 
-<div align="center"> <img src="https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p4.PNG" width="550"/> </div><br>
+<div align="center"> <img src="https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p3.PNG" width="600"/> </div><br>
 
-<div align="center"> <img src="https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p5.PNG" width="550"/> </div><br>
+<div align="center"> <img src="https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p4.PNG" width="600"/> </div><br>
+
+<div align="center"> <img src="https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p5.PNG" width="600"/> </div><br>
