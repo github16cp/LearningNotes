@@ -20,12 +20,10 @@
 
 ![p_5](https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p1_5.PNG)
 
-![p2](https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p2.PNG)
+<div align="center"> <img src="https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p2.PNG" width="550"/> </div><br>
 
-![p3](https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p3.PNG)
+<div align="center"> <img src="https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p3.PNG" width="550"/> </div><br>
 
-![p4](https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p4.PNG)
+<div align="center"> <img src="https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p4.PNG" width="550"/> </div><br>
 
-![p5](https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p5.PNG)
-
-<div align="center"> <img src="https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p5.PNG" width="500"/> </div><br>
+<div align="center"> <img src="https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/p5.PNG" width="550"/> </div><br>
