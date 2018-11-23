@@ -31,6 +31,7 @@
 
 ## Programming Exercise: K-means Clustering and Principal Component Analysis
 ### 1. K-means Clustering
+------
 将K-means算法用于图像压缩，先在示例2D数据集上进行实验以便很好地理解K均值算法是怎么工作的。然后，使用K-means算法减少图像中颜色数来进行图像压缩。
 
 #### 1.1 实现K-means
@@ -97,7 +98,7 @@ centroids = X(randidx(1:K),:)
 使用K-means方法选择16色来表示压缩图像，将原始图像的每一个像素点看作是数据样本并使用K-means算法在3维RGB空间中找到像素最好的16个分类。一旦计算出图像的簇质心，就用这16色替换原来图像的像素。
 
 ### 2. Principal Component Analysis
-
+-------
 #### 2.1 示例数据集
 #### 2.2 Implementaing PCA
 
