@@ -64,5 +64,70 @@ end
 ```
 1.1.2 计算质心均值
 对每个点分配一个质心，算法的第二个阶段是重新计算，对于每一个质心，是所有点的均值。
+`computeCentroids.m`
+```Matlab
+% 如何进行向量化的实现
+for i = 1:K
+    class_i = find(idx == i);
+    centroids(i,:) = 1/size(class_i,1)*sum(X(class_i,:));
+end
 
-<img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" style="border:none;">
+```
+1.2 K-means on example dataset
+
+plot测试
+
+1.3 Random initialization
+```Matlab
+% Randomly recorder the indices of examples
+randidx = randperm(size(X,1));
+
+% Take the first K examples as centroids
+
+centroids = X(randidx(1:K),:)
+```
+
+1.4 Image compression with K-means
+
+（24位色）一个图像用24位的颜色表示，每一个像素表示成3个8bit的无符号整数（0-255），分别表示red，green，blue密度值，这种编码方式叫做RGB编码方式。图像包含了成千上百个颜色，目标：将颜色数减为16色。
+
+为了完成这种缩减，只需要存储16个选择颜色的RGB的值，每个像素点只需要存储对应位置颜色的索引（4bit足够表示16个颜色值）
+
+使用K-means方法选择16个颜色来表示压缩图像，将原始图像的每一个像素点看作是数据样本并使用K-means算法找到16个颜色在3维RGB空间中找到像素最好的分类。一旦计算出图像的簇质心，就用这16个颜色替换原来图像的像素。
+
+### 2. Principal Component Analysis
+
+2.1 示例数据集
+2.2 Implementaing PCA
+
+PCA包含两个计算步骤:第一步，计算数据的协方差；第二步，使用Matlab的SVD函数计算特征向量（计算协方差矩阵的特征向量），这些特征向量对应着数据的主成分。
+
+在使用PCA之前需要将数据进行标准化。
+
+计算主成分：
+```Matlab
+sigma = 1/m*X'*X;
+[U, S, V] = svd(sigma);
+```
+2.3 使用PCA进行维度约减
+
+计算主成分之后，使用主成分减少特征维度通过将样本投影到一个低维空间中。
+
+2.3.1 将数据投影到主成分上
+
+```Matlab
+U_reduce = U(:,1:K);
+Z = X*U_reduce;
+```
+
+2.3.2 Reconstructing an approximation of Data
+
+数据投影到低维空间，可以近似恢复数据通过投影回来到原始的高维空间
+```Matlab
+U_reduce = U(:,1:K);
+X_rec = Z*U_reduce';
+
+```
+
+2.4 脸部图像数据集
+32*32的灰度图，每行长度为1024的向量
