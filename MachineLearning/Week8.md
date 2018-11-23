@@ -1,5 +1,3 @@
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-
 ## Unsupervised Learning
 <div align="center"> <img src="https://github.com/github16cp/LearningNotes/blob/master/MachineLearning/images/w8k1.PNG" width="600"/> </div><br>
 
@@ -66,4 +64,5 @@ end
 ```
 1.1.2 计算质心均值
 对每个点分配一个质心，算法的第二个阶段是重新计算，对于每一个质心，是所有点的均值。
-$\sum_{i=0}^N\int_{a}^{b}g(t,i)\text{d}t$
+
+<img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" style="border:none;">
