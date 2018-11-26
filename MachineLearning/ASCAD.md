@@ -6,6 +6,16 @@
 [optimizers](https://keras.io/optimizers/)
 
 优化器是编译Keras所需要的2个参数之一，优化器有：SGD、RMSprop、Adagrad、Adadelta、Adam、Adamax、Nadam。
+```Python
+keras.optimizers.RMSprop(lr=0.001, rho=0.9, epsilon=None, decay=0.0)
+```
+
+* epsilon: 模糊因子
+* decay: 每次更新学习速率的衰减
+
+RMSprop优化器：除了学习速率之外，其余参数推荐采用优化器的默认值，RNN网络使用这个优化器是个很好的选择。
+
+[参考](http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf)
 
 RMSprop Source:
 ```Python
