@@ -13,7 +13,9 @@ keras.optimizers.RMSprop(lr=0.001, rho=0.9, epsilon=None, decay=0.0)
 * epsilon: 模糊因子
 * decay: 每次更新学习速率的衰减
 
-RMSprop优化器：除了学习速率之外，其余参数推荐采用优化器的默认值，RNN网络使用这个优化器是个很好的选择。
+RMSprop优化器：root mean square prop，除了学习速率之外，其余参数推荐采用优化器的默认值，RNN网络使用这个优化器是个很好的选择。
+
+[参考笔记](https://songapore.github.io/2018/04/30/course2-Week2-7-RMSProp/)
 
 [参考1](https://blog.csdn.net/u010089444/article/details/76725843)
 
