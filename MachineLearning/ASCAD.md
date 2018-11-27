@@ -86,3 +86,11 @@ class RMSprop(Optimizer):
         base_config = super(RMSprop, self).get_config()
         return dict(list(base_config.items()) + list(config.items()))
 ```
+## keras.callbacks.ModelCheckpoint
+```Python
+keras.callbacks.ModelCheckpoint(filepath, monitor='val_loss', verbose=0, save_best_only=False, save_weights_only=False, mode='auto', period=1)
+```
+
+该函数在每个epoch后将模型保存到filepath中
+
+* save_best_only：当设置为True时，将只保存在验证集上性能最好的模型
