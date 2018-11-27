@@ -15,7 +15,9 @@ keras.optimizers.RMSprop(lr=0.001, rho=0.9, epsilon=None, decay=0.0)
 
 RMSprop优化器：除了学习速率之外，其余参数推荐采用优化器的默认值，RNN网络使用这个优化器是个很好的选择。
 
-[参考](http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf)
+[参考1](https://blog.csdn.net/u010089444/article/details/76725843)
+
+[参考2](http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf)
 
 RMSprop Source:
 ```Python
