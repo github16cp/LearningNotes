@@ -17,6 +17,6 @@
 
 3. Relu会使得一部分神经元的输出为0，这样就造成了网络的稀疏性，并且减少了参数的相互依存的关系，缓解了过拟合问题的发生。
 
-目前最主流的做法：Relu之后再加一步Batch Normalization，尽可能地保证每一层网络的输入具有相同的分布。
+目前最主流的做法：Relu之后再加一步[Batch Normalization](https://arxiv.org/pdf/1502.03167.pdf)，尽可能地保证每一层网络的输入具有相同的分布。
 
 [参考](https://blog.csdn.net/caimouse/article/details/67630435)
