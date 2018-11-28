@@ -94,3 +94,59 @@ keras.callbacks.ModelCheckpoint(filepath, monitor='val_loss', verbose=0, save_be
 该函数在每个epoch后将模型保存到filepath中
 
 * save_best_only：当设置为True时，将只保存在验证集上性能最好的模型
+
+## keras.layers.Dense
+Dense就是普通的全连接层
+```Python
+keras.layers.Dense(units, activation=None, use_bias=True, kernel_initializer='glorot_uniform', bias_initializer='zeros', kernel_regularizer=None, bias_regularizer=None, activity_regularizer=None, kernel_constraint=None, bias_constraint=None)
+```
+`Dense`实现`output = activation(dot(input, kernel) + bias)`，其中`activation`是按照逐个元素计算的激活函数，`kernel`是由网络层创建的权值矩阵，`bias`表示偏置向量。
+
+* units: 正整数，输出空间的维度
+
+**输入尺寸**
+
+`(batch_size,input_dim)`2D输入
+
+**输出尺寸**
+`(batch_size,input_dim)`2D的输入，输出为`(batch_size, units)`
+
+## keras.models.Model
+Model 模型方法
+
+```Python
+compile(self, optimizer, loss, metrics=None, loss_weights=None, sample_weight_mode=None, weighted_metrics=None, target_tensors=None)
+```
+`compile`函数编译模型以供训练
+
+## fit
+```Python
+fit(self, x=None, y=None, batch_size=None, epochs=1, verbose=1, callbacks=None, validation_split=0.0, validation_data=None, shuffle=True, class_weight=None, sample_weight=None, initial_epoch=0, steps_per_epoch=None, validation_steps=None)
+```
+## Conv1D
+```Python
+keras.layers.Conv1D(filters, kernel_size, strides=1, padding='valid', data_format='channels_last', dilation_rate=1, activation=None, use_bias=True, kernel_initializer='glorot_uniform', bias_initializer='zeros', kernel_regularizer=None, bias_regularizer=None, activity_regularizer=None, kernel_constraint=None, bias_constraint=None)
+```
+* filter: 输出空间的维度，在卷积中输出过滤器的数目
+* kernel_size:一个整数的元组或者列表，指明了1D卷积窗口的长度
+
+## MaxPooling1D
+```Python
+keras.layers.MaxPooling1D(pool_size=2, strides=None, padding='valid', data_format='channels_last')
+```
+## Flatten
+```Python
+keras.layers.Flatten(data_format=None)
+```
+亚平，平移输入，不影响batch_size的大小
+
+[参考](https://keras-cn.readthedocs.io/en/latest/layers/core_layer/)
+
+## Model类
+给定输入张量和输出张量，可以实例化一个Model:
+```Python
+model = Model(inputs=a, outputs=b)
+```
+这个模型包含从`a`到`b`所有网络层。
+
+[参考](https://keras.io/zh/models/model/)
