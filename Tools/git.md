@@ -1,4 +1,13 @@
-### 常见Error及解决方法汇总
+## Website Address
+[Git](https://git-scm.com/)
+
+## Git for GitHub
+[Git Cheat Sheet](https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf)
+
+## 参考
+[廖雪峰官方网站git教程](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
+
+## Error and Solution
 **Error 1** 
 
 从远程库git clone的时候出现Permission Denied
@@ -28,11 +37,3 @@ Solution: 原因本机公钥（publickey）未添加至github，所以无法识�
  ```
  git clone @github.com:yourname/Python.git
  ```
-
- ## Git for GitHub
- [Git Cheat Sheet](https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf)
-
- ## 参考
-[廖雪峰官方网站git教程](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
-
-
