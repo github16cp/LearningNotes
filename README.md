@@ -9,9 +9,6 @@
 
 [HDF5 for Python](https://www.h5py.org/)
 
-### 作业  
-[coursera](https://www.coursera.org/learn/machine-learning/home/welcome)
-
 ### tensorflow
 [tensorflow](https://github.com/tensorflow/tensorflow)
 
@@ -54,5 +51,5 @@
 
 [李宏毅机器学习](https://www.bilibili.com/video/av10590361)
 
-
+[coursera](https://www.coursera.org/learn/machine-learning/home/welcome)
 
