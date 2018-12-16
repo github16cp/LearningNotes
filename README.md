@@ -19,7 +19,7 @@
 
 [keras中文文档](https://keras-cn.readthedocs.io/en/latest/)
 
-### Pytorch 
+### Pytorch
 [pytorch官网](https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html)
 
 ### C++
@@ -43,9 +43,6 @@
 [SCI模板](http://www.phrasebank.manchester.ac.uk/)
 
 ### 在线学习课程
-[腾讯云](https://cloud.tencent.com/developer/edu/courses)  
-
-[学习做微信小程序](https://cloud.tencent.com/developer/edu/learn-100005-1095/1839)
 
 [吴恩达机器学习](https://study.163.com/course/courseMain.htm?courseId=1004570029)
 
