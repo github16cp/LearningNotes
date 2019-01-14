@@ -7,6 +7,19 @@
 ## 参考
 [廖雪峰官方网站git教程](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
 
+## git
+Git是一个免费开源的分布式版本控制系统，旨在以速度和效率处理从小型到大型的所有项目。
+
+Git易于学习，占地面积小，性能极快。它超越了诸如Subversion、CVS、Performance和ClearCase这样的配置管理工具，具有廉价的本地分支、方便的临时区域和多个工作流等特性。
+
+[学习文档](https://git-scm.com/docs)
+
+## giteveryday for individual developer
+1. git init 创建一个新仓库或者重新初始化一个已有的仓库。
+这个命令创建一个空仓库，一个具有objects，ref/heads，refs/tags和模板文件子目录的.git目录。还创建了引用主分支 `HEAD` 的初始 `HEAD` 文件。
+2. git log 仓库的操作记录
+3. git checkout/git branch 切换branches，恢复工作树文件 git branch: master/git checkout: 
+4. git add 管理索引文件，更新工作树的当前内容， git status可以看更新状态
 ## Error and Solution
 **Error 1** 
 
