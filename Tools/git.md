@@ -18,8 +18,15 @@ Git易于学习，占地面积小，性能极快。它超越了诸如Subversion�
 1. git init 创建一个新仓库或者重新初始化一个已有的仓库。
 这个命令创建一个空仓库，一个具有objects，ref/heads，refs/tags和模板文件子目录的.git目录。还创建了引用主分支 `HEAD` 的初始 `HEAD` 文件。
 2. git log 仓库的操作记录
-3. git checkout/git branch 切换branches，恢复工作树文件 git branch: master/git checkout: 
-4. git add 管理索引文件，更新工作树的当前内容， git status可以看更新状态
+3. git checkout 和 git branch 切换branches，恢复工作树文件 git branch: master/git checkout: 
+4. git add 管理索引文件，更新工作树的当前内容
+5. git diff 和 git status查看更新哪些内容
+6. git commit 提前当前分支，提交？
+7. git reset 和 git checkout（带路径参数）来撤销改变
+8. git merge 合并局部分支
+9. git rebase
+10. git tag
+[参考](https://git-scm.com/docs/giteveryday)
 ## Error and Solution
 **Error 1** 
 
