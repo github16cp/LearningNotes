@@ -26,6 +26,7 @@ Git易于学习，占地面积小，性能极快。它超越了诸如Subversion�
 8. git merge 合并局部分支
 9. git rebase
 10. git tag
+
 [参考](https://git-scm.com/docs/giteveryday)
 ## Error and Solution
 **Error 1** 
