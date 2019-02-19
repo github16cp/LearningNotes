@@ -1,11 +1,13 @@
-# Redis数据库
+## Redis数据库
 
-# 在window上使用celery4.2.1配置redis
-1. conda env list
-2. activate emma
-3. pip install celery
-4. pip install redis
-5. 在当前目录下编写tasks.py
+## 在window上使用celery4.2.1配置redis
+```
+conda env list
+activate emma
+pip install celery
+pip install redis
+```
+在当前目录下编写tasks.py
 ```Python
 from celery import Celery
 broker = "redis://127.0.0.1:6379/0"
@@ -15,19 +17,20 @@ app = Celery("tasks", broker=broker, backend=backend)
 def add(x, y):
 return x+y
 ```
-6. `celery -A tasks worker --loglevel=info`启动Celery Worker开始监听并执行任务
+`celery -A tasks worker --loglevel=info`启动Celery Worker开始监听并执行任务
 其中`-A`表示的是Celery APP的名称，指的是tasks.py，tasks是APP的名称，worker是一个执行任务角色，loglevel=info记录日志类型默认是info，这个命令启动了一个worker，用来执行程序中add这个加法任务
 ```
 [2019-02-18 21:54:53,370: INFO/MainProcess] mingle: all alone
 [2019-02-18 21:54:53,380: INFO/MainProcess] celery@xx ready.
 ```
 可以看到Celery正常工作在名称为xx的主机上，当前APP是tasks，运输工具是在程序中设置的中间人redis://127.0.0.1:6379/0，此时重新打开一个终端，执行Python，进入Python交互界面，用delay()方法调用任务
-7. 调用任务
+
+调用任务
 ```Python
 from tasks import add
 add.delay(6, 6)
 ```
-8. 结果
+结果
 ```
 [2019-02-18 22:03:27,252: INFO/MainProcess] Received task: tasks.add[211c316c-d9ea-4301-81e9-a21212a3992e]
 [2019-02-18 22:03:27,256: ERROR/MainProcess] Task handler raised error: ValueError('not enough values to unpack (expected 3, got 0)',)
@@ -40,7 +43,7 @@ ValueError: not enough values to unpack (expected 3, got 0)
 ```
 第一行表明worker收到一个任务：tasks.add，这个时候出现一个错误`ValueError: not enough values to unpack (expected 3, got 0)`
 
-9. 解决方法
+解决方法
 在两个命令行终端输入：
 ```
 set FORKED_BY_MULTIPROCESSING = 1
