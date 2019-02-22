@@ -5,6 +5,7 @@
 * [4. MedianofTwoSortedArrays](#4-MedianofTwoSortedArrays)
 * [5. LongestPalindromicSubstring](#5-LongestPalindromicSubstring)
 * [6. ZigZagConversion](#6-ZigZagConversion)
+* [7. ReverseInteger](#7-ReverseInteger)
 <!-- GFM-TOC -->
 
 # 1. TwoSum
@@ -280,6 +281,25 @@ public:
 		}
 		return res;
 
+	}
+};
+```
+
+# 7. ReverseInteger
+给定32bit的有符号整数，翻转整数的数字。
+```C++
+class Solution {
+public:
+	int reverse(int x) {//考虑溢出问题,
+		int res = 0;
+		while (x != 0) {
+			int pop = x % 10;
+			x /= 10;
+			if (res > INT_MAX/10 || (res == INT_MAX / 10 && pop > 7)) return 0;
+			if (res < INT_MIN/10 || (res == INT_MIN / 10 && pop < -8)) return 0;
+			res = res * 10 + pop;
+		}
+		return res;
 	}
 };
 ```
