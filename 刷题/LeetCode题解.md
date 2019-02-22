@@ -4,6 +4,7 @@
 * [3. LongestSubstringWithoutRepeatingCharacters](#3-LongestSubstringWithoutRepeatingCharacters)
 * [4. MedianofTwoSortedArrays](#4-MedianofTwoSortedArrays)
 * [5. LongestPalindromicSubstring](#5-LongestPalindromicSubstring)
+* [6. ZigZagConversion](#6-ZigZagConversion)
 <!-- GFM-TOC -->
 
 # 1. TwoSum
@@ -252,3 +253,31 @@ public:
 	}
 };
 ``
+# 6. ZigZagConversion
+* 假设第0行有k个字符，位于第一行字符的索引`k*(2*rowNumbers - 2)`
+* 第rowNumbers - 1行字符的索引`k*(2*rowNumbers - 2) + (rowNumbers - 1)`
+* 第i行字符的索引`k*(2*rowNumbers - 2) + i`和`(k + 1)*(2*rowNumbers - 2) - i`
+
+```C++
+class Solution {
+public:
+	string convert(string s, int numRows) {
+		int len = s.length();
+		if (len == 0) return "";
+		if (numRows == 1) return s;
+		string res;
+		int cycLen = 2 * numRows - 2;
+
+		for (int i = 0; i < numRows; i++) {
+			for (int j = 0; i + j < len; j += cycLen) {
+				res += s[j + i];
+				if (i != 0 && i != numRows - 1 && j + cycLen - i < len) {
+					res += s[j + cycLen - i];
+				}
+			}
+		}
+		return res;
+
+	}
+};
+```
