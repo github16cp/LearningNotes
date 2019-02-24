@@ -6,6 +6,7 @@
 * [5. LongestPalindromicSubstring](#5-LongestPalindromicSubstring)
 * [6. ZigZagConversion](#6-ZigZagConversion)
 * [7. ReverseInteger](#7-ReverseInteger)
+* [8. StringtoInteger](#8-StringtoInteger)
 <!-- GFM-TOC -->
 
 # 1. TwoSum
@@ -300,6 +301,45 @@ public:
 			res = res * 10 + pop;
 		}
 		return res;
+	}
+};
+```
+
+# 8. StringtoInteger
+
+实现从字符串转化为整数的`atoi`功能。
+
+函数丢弃空格直到找到第一个非空字符，如果字符串的第一个字符是非有效的整数，或者`str`是空字符串或仅仅包含空格，不执行转换。
+
+`INT_MAX(2^31 - 1)` 和 `INT_MIN(-2^31)`。定义`res`为`long long`类型，要不然`res`是最大负数的时候，计算`res * 10`的时候会溢出。
+```C++
+class Solution {
+public:
+	int myAtoi(string str) {
+		int len = str.length();
+		if (str.length() == 0) return 0;
+		int i = 0;
+		while (str[i] == ' ') i++;
+		int flag = 1;
+		if (str[i] == '+') {
+			i++;
+		}
+		else if (str[i] == '-') {
+			flag = -1;
+			i++;
+		}
+		long long res = 0;//***longlong
+		
+		while (str[i] - '0' >= 0 && str[i] - '0' <= 9) {
+			res = res * 10 + str[i] - '0';
+			if (res > INT_MAX) {
+				if (flag == 1) return  INT_MAX;
+				else return INT_MIN;
+			}
+			i++;
+		}
+
+		return flag * res;
 	}
 };
 ```
