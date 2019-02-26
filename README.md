@@ -9,6 +9,7 @@
 
 [HDF5 for Python](https://www.h5py.org/)
 
+
 ### tensorflow
 [tensorflow](https://github.com/tensorflow/tensorflow)
 
@@ -50,3 +51,4 @@
 
 [coursera](https://www.coursera.org/learn/machine-learning/home/welcome)
 
+[复旦大学邱锡鹏](https://nndl.github.io/)
