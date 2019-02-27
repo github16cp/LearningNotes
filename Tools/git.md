@@ -59,6 +59,9 @@ Solution: 原因本机公钥（publickey）未添加至github，所以无法识�
  git clone @github.com:yourname/Python.git
  ```
 
+## git 查询用户名和密码
+1. git config user.name
+2. git config user.email
 ## git bash 提交没有绿格子问题
 
 git bash 中的邮箱地址和github的邮箱地址不一致造成的，在git bash中将邮箱地址更改为github中的邮箱地址
