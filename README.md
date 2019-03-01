@@ -52,3 +52,5 @@
 [coursera](https://www.coursera.org/learn/machine-learning/home/welcome)
 
 [复旦大学邱锡鹏](https://nndl.github.io/)
+
+[吴恩达非技术AI普及课《全民AI》](https://www.coursera.org/learn/ai-for-everyone/home/welcome)
