@@ -8,6 +8,7 @@
 * [7. ReverseInteger](#7-ReverseInteger)
 * [8. StringtoInteger](#8-StringtoInteger)
 * [9. PalindromeNumber](#9-PalindromeNumber)
+* [10. RegularExpressionMatching](#10-RegularExpressionMatching)
 <!-- GFM-TOC -->
 
 # 1. TwoSum
@@ -377,6 +378,53 @@ public:
 
 		if (((reverse_half_num == x) && (bitnum % 2 == 0)) ||( (reverse_half_num == x / 10) && (bitnum % 2 != 0)))
 			return true;
+		return false;
+	}
+};
+```
+# 10. RegularExpressionMatching
+给定一个输入字符串s和模式p，用`*`和`.`实现正则表达匹配。
+
+`.`匹配零个或者多个单个字符；`*`匹配零个或者多个前面的元素。
+
+匹配应该覆盖所有的输入字符串而不是部分。
+
+注意： 字符串可以为空，并且只包含`a-z`的小写字母；可以为空，并且只包含`a-z`的小写字母，以及像`.`和`*`的字符。
+
+首先，拿到这个题目后我第一个感觉是做过，可惜的是做题思路给忘记了。顿时有点小小的忧桑，刚刚看到大佬说，刷到一定的题量后，每天花一点时间保持题感还是很重要的，建议刷之前做过的题目，复习效果比做新题要好。大家都有一样的问题，一个月不刷题，再看到题目就跟智障一样。2019年3月4日
+
+现在让我们重新梳理一遍吧。
+
+在剑指Offer第52题中做过这个题目。
+
+s是正常的字符串，p是包含特殊字符的。匹配的话，从左到右一直进行下去。`.`可以匹配任意字符，`*`的话根据它前面的字符来定。
+
+分类如下：
+1. 如果s为空的话，p为空，返回为true。
+2. 如果s不为空，但是p为空，返回false。在s为空，p不为空时，还是有可能能够匹配成功的。
+3. p的下一个字符为`*`。如果p的下一个字符不是`*`，那就直接匹配当前的字符，如果匹配成功，直接匹配下一个，如果匹配失败，那么返回false;如果p的下一个字符是`*`的话，那就比较复杂，因为其可以代表0个或者是多个。如果匹配零个字符时，s的当前字符不变，p的字符后移两位，跳过*这个字符。如果匹配的是1个或者多个，str的字符往下移动一个，但是p的字符不变。
+
+判断条件需要仔细，递归方法。
+```C++
+class Solution {
+public:
+	bool isMatch(string s, string p) {
+		if (s.empty() && p.empty()) return true;
+		if (!s.empty() && p.empty()) return false;
+		
+		int i = 0, j = 0;
+		if (p[j + 1] != '*') {
+			if (s[i] == p[j] || (s[i] != '\0' && p[j] == '.') )
+				return isMatch(s.substr(i + 1, s.length()), p.substr(j + 1, p.length()));
+			else return false;
+		}
+		else {
+			if (s[i] == p[j] || (s[i] != '\0' && p[j] == '.'))
+				return isMatch(s, p.substr(j + 2, p.length())) || isMatch(s.substr(i + 1, s.length()), p);
+			else//s[i] == '\0'
+				return isMatch(s, p.substr(j + 2, p.length()));
+		}
+
 		return false;
 	}
 };
