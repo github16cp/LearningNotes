@@ -7,6 +7,7 @@
 * [6. ZigZagConversion](#6-ZigZagConversion)
 * [7. ReverseInteger](#7-ReverseInteger)
 * [8. StringtoInteger](#8-StringtoInteger)
+* [9. PalindromeNumber](#9-PalindromeNumber)
 <!-- GFM-TOC -->
 
 # 1. TwoSum
@@ -340,6 +341,43 @@ public:
 		}
 
 		return flag * res;
+	}
+};
+```
+
+# 9. PalindromeNumber
+回文数
+
+确定一个整数是不是回文数，一个数是回文数当且仅当它从前往后读都是一样的。
+
+第一个思路是将数转换为字符串，但是需要额外的非常数空间；第二种方式是将数翻转与原来的数进行比较，如果它们两者相同的话，则是回文数，但是这个翻转的数是大于`int.MAX`，整数溢出问题。
+
+仅仅翻转数的一半，这个数应该和原来的数的前一半相同。
+```C++
+class Solution {
+public:
+	bool isPalindrome(int x) {
+		if (x < 0)
+			return false;
+		if (x == 0)
+			return true;
+		int tmp = x;
+		int reverse_half_num = 0;
+		int bitnum = 0;
+
+		while (tmp > 0) {
+			tmp = tmp / 10;
+			bitnum++;
+		}
+
+		for (int i = 0; i < bitnum / 2; i++) {
+			reverse_half_num = reverse_half_num * 10 + x % 10;
+			x = x / 10;
+		}
+
+		if (((reverse_half_num == x) && (bitnum % 2 == 0)) ||( (reverse_half_num == x / 10) && (bitnum % 2 != 0)))
+			return true;
+		return false;
 	}
 };
 ```
