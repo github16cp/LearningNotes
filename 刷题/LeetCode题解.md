@@ -9,6 +9,7 @@
 * [8. StringtoInteger](#8-StringtoInteger)
 * [9. PalindromeNumber](#9-PalindromeNumber)
 * [10. RegularExpressionMatching](#10-RegularExpressionMatching)
+* [11. ContainerWithMostWater](#11-ContainerWithMostWater)
 <!-- GFM-TOC -->
 
 # 1. TwoSum
@@ -429,3 +430,31 @@ public:
 	}
 };
 ```
+
+# 11. ContainerWithMostWater
+给定n个非负整数，每一个代表了在坐标（i，ai）上的点。根据输入画一条垂直的线，线的两端分别是（i，ai）和（i，0）。找到两条垂直的线组成的容器，使其能够容纳最大的量。
+
+拿到这个题的第一个想法就是使用动态规划。
+
+方法1：穷举搜索，计算每两个垂直线对。时间复杂度O(n^2)。
+
+方法2：面积是由最短的那个线的高度决定的。这条线越远，就会获取更多的面积。首先，选取两个指针，一个指向开始端，一个指向结束端，组成了线的长度。维持一个`maxarea`存储目前获取到的最大面积。在每一步找到它们之间的面积，更新`maxarea`并且移动指针指向较短的那条线知道移动到另一端。
+
+```C++
+class Solution {
+public:
+	int maxArea(vector<int>& height) {
+		int maxarea = 0;
+		if (!height.empty()) {
+			int left = 0, right = height.size() - 1;
+			while (right >= left) {
+				maxarea = max(maxarea, (right - left) * min(height[left], height[right]));
+				if (height[left] < height[right]) left++;
+				else right--;
+			}
+		}
+		return maxarea;
+	}
+};
+```
+
