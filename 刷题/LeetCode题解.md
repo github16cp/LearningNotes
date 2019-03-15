@@ -16,6 +16,7 @@
 * [144. BinaryTreePreorderTraversal](#144-BinaryTreePreorderTraversal)
 * [437. PathSumIII](#437-PathSumIII)
 * [617. MergeTwoBinaryTrees](#617-MergeTwoBinaryTrees)
+* [572. SubtreeofAnotherTree](#572-SubtreeofAnotherTree)
 <!-- GFM-TOC -->
 
 # 1. TwoSum
@@ -548,6 +549,34 @@ public:
 		root->left = mergeTrees(t1->left, t2->left);
 		root->right = mergeTrees(t1->right, t2->right);
 		return root;
+	}
+};
+```
+
+# 572. SubtreeofAnotherTree
+此题判断一个树是不是另外一个树的子树。本题的求解转换为：判断s为根节点的树是否和t相同，或者判断s的两个子树是否存在解。在子树上的求解方法：依旧是递归。
+```
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+	bool isSubtree(TreeNode* s, TreeNode* t) {
+		if ((s == NULL && t == NULL) || (s != NULL && t == NULL)) return true;
+		if (s == NULL && t != NULL) return false;
+		return isRootSubTree(t, s) || isSubtree(s->left, t) || isSubtree(s->right, t);
+	}
+	bool isRootSubTree(TreeNode* s, TreeNode* t) {
+		if (s == NULL && t == NULL) return true;
+		if ((s == NULL && t != NULL) || (s != NULL && t == NULL)) return false;
+		if (s->val == t->val) return isRootSubTree(s->left, t->left) && isRootSubTree(s->right, t->right);
+		else return false;
 	}
 };
 ```
