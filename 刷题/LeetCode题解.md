@@ -13,10 +13,13 @@
 * [104. MaximumDepthofBinaryTree](#104-MaximumDepthofBinaryTree)
 * [110. BalancedBinaryTree](#110-BalancedBinaryTree)
 * [112. PathSum](#112-PathSum)
-* [144. BinaryTreePreorderTraversal](#144-BinaryTreePreorderTraversal)
 * [437. PathSumIII](#437-PathSumIII)
 * [617. MergeTwoBinaryTrees](#617-MergeTwoBinaryTrees)
 * [572. SubtreeofAnotherTree](#572-SubtreeofAnotherTree)
+* [101. SymmetricTree](#101-SymmetricTree)
+* [144. BinaryTreePreorderTraversal](#144-BinaryTreePreorderTraversal)
+* [145. BinaryTreePostorderTraversal](#145-BinaryTreePostorderTraversal)
+* [94. BinaryTreeInorderTraversal](#94-BinaryTreeInorderTraversal)
 <!-- GFM-TOC -->
 
 # 1. TwoSum
@@ -477,7 +480,7 @@ public:
 ```
 
 # 110. BalancedBinaryTree
-判断平衡树，递归的方法，用到求解树的高度，在判断的时候需要对每个结点是否平衡进行判断。
+判断平衡树(平衡树左右子树的高度之差不超过1)，递归的方法，用到求解树的高度，在判断的时候需要对每个结点是否平衡进行判断。
 ```C++
 class Solution {
 public:
@@ -494,7 +497,7 @@ public:
 ```
 
 # 112. PathSum
-
+判断是否存在结点的和等于一个树的路径，只需要找到一个路径。
 ```C++
 class Solution {
 public:
@@ -506,11 +509,8 @@ public:
 };
 ```
 
-# 144. BinaryTreePreorderTraversal
-非递归实现树的前序遍历
-
 # 437. PathSumIII
-统计路径和等于一个数的路径数量
+统计路径和等于一个数的路径数量，划分为：以根结点为起点或者，不以根节点为起点，两种求解结果合在一起。
 ```C++
 struct TreeNode {
      int val;
@@ -537,7 +537,7 @@ public:
 };
 ```
 # 617. MergeTwoBinaryTrees
-归并两棵树，对根节点初始化，对根节点的左右结点进行递归。
+归并两棵树（将两棵树结点上的值加起来），对根节点初始化，对根节点的左右结点进行递归。
 ```C++
 class Solution {
 public:
@@ -555,7 +555,7 @@ public:
 
 # 572. SubtreeofAnotherTree
 此题判断一个树是不是另外一个树的子树。本题的求解转换为：判断s为根节点的树是否和t相同，或者判断s的两个子树是否存在解。在子树上的求解方法：依旧是递归。
-```
+```C++
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -570,13 +570,130 @@ public:
 	bool isSubtree(TreeNode* s, TreeNode* t) {
 		if ((s == NULL && t == NULL) || (s != NULL && t == NULL)) return true;
 		if (s == NULL && t != NULL) return false;
-		return isRootSubTree(t, s) || isSubtree(s->left, t) || isSubtree(s->right, t);
+		return isRootSubTree(s, t) || isSubtree(s->left, t) || isSubtree(s->right, t);
 	}
 	bool isRootSubTree(TreeNode* s, TreeNode* t) {
 		if (s == NULL && t == NULL) return true;
 		if ((s == NULL && t != NULL) || (s != NULL && t == NULL)) return false;
 		if (s->val == t->val) return isRootSubTree(s->left, t->left) && isRootSubTree(s->right, t->right);
 		else return false;
+	}
+};
+```
+
+# 101. SymmetricTree
+一棵树是否关于中心对称。判断以根节点为对称中心的两个节点是狗相同，在遍历树的过程中，要同时遍历这两个节点，遍历过程可以使用递归来实现。如果当前判断的两个节点是 t1 和 t2，在进入新的遍历递归函数时，下一层要遍历的应该是 (t1.left, t2.right) 和 (t1.right, t2.left)。
+```C++
+class Solution {
+public:
+	bool isSymmetric(TreeNode* root) {
+		if (root == NULL) return true;
+		return isSymmetric(root->left,root->right);
+	}
+	bool isSymmetric(TreeNode* t1, TreeNode* t2) {
+		if (t1 == NULL && t2 == NULL) return true;
+		if (t1 == NULL || t2 == NULL) return false;
+		if (t1->val != t2->val) return false;
+		return isSymmetric(t1->left, t2->right) && isSymmetric(t1->right, t2->left);
+	}
+}; 
+```
+
+# 144. BinaryTreePreorderTraversal
+非递归实现树的前序遍历。
+
+递归要用到递归栈，实现非递归最简单直接的方式是使用语言自带的栈来模拟递归栈，它和递归栈不在同一个内存空间中，不会出现 StackOverflow 错误。
+
+使用栈来存储节点，当从栈中弹出一个节点时，就立即访问这个节点（添加到 vector 中），并且将左右子树根节点都添加到栈中。因为栈具有先进后出的顺序，如果先添加左子树根节点再添加右子树根节点，那么会先弹出右子树根节点，导致先访问右子树。所以要先将右子树根节点添加，再将左子树根节点添加，让左子树根节点先弹出。
+```C++
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+	vector<int> preorderTraversal(TreeNode* root) {
+		vector<int> ret;
+		stack<TreeNode*> tree;
+		tree.push(root);
+		while (!tree.empty()) {
+			TreeNode* node = tree.top();
+			tree.pop();
+			if (node == NULL) continue;
+			ret.push_back(node->val);			
+			tree.push(node->right);
+			tree.push(node->left);
+		}
+		return ret;
+	}
+};
+```
+# 145. BinaryTreePostorderTraversal
+非递归实现后序遍历。
+
+前序遍历为 root -> left -> right，后序遍历为 left -> right -> root。可以修改前序遍历成为 root -> right -> left，那么这个顺序就和后序遍历正好相反。
+```C++
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+	vector<int> postorderTraversal(TreeNode* root) {
+		vector<int> ret;
+		stack<TreeNode*> tree;
+		tree.push(root);
+		while (!tree.empty()) {
+			TreeNode* node = tree.top();
+			tree.pop();
+			if (node == NULL) continue;
+			ret.push_back(node->val);			
+			tree.push(node->left);
+			tree.push(node->right);
+		}
+		vector<int> rev;
+		for (int i = ret.size() - 1; i >= 0; i--) {
+			rev.push_back(ret[i]);
+		}
+		return rev;
+	}
+};
+```
+
+# 94. BinaryTreeInorderTraversal
+非递归实现树的中序遍历。
+
+因为中序遍历需要先访问左子树，只有当左子树为空时，才从栈中弹出节点并且访问该节点，从而保证左子树都被访问过了。
+
+```C++
+class Solution {
+public:
+	vector<int> inorderTraversal(TreeNode* root) {
+		vector<int> ret;
+		if (root == NULL) return ret;
+		stack<TreeNode*> tree;
+		TreeNode* curnode = root;
+		while (curnode != NULL || !tree.empty()) {
+			while (curnode != NULL) {
+				tree.push(curnode);
+				curnode = curnode->left;
+			}
+			TreeNode* node = tree.top();
+			tree.pop();
+			ret.push_back(node->val);
+			curnode = node->right;
+		}
+		return ret;
 	}
 };
 ```
