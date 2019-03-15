@@ -10,6 +10,12 @@
 * [9. PalindromeNumber](#9-PalindromeNumber)
 * [10. RegularExpressionMatching](#10-RegularExpressionMatching)
 * [11. ContainerWithMostWater](#11-ContainerWithMostWater)
+* [104. MaximumDepthofBinaryTree](#104-MaximumDepthofBinaryTree)
+* [110. BalancedBinaryTree](#110-BalancedBinaryTree)
+* [112. PathSum](#112-PathSum)
+* [144. BinaryTreePreorderTraversal](#144-BinaryTreePreorderTraversal)
+* [437. PathSumIII](#437-PathSumIII)
+* [617. MergeTwoBinaryTrees](#617-MergeTwoBinaryTrees)
 <!-- GFM-TOC -->
 
 # 1. TwoSum
@@ -457,4 +463,91 @@ public:
 	}
 };
 ```
+# 104. MaximumDepthofBinaryTree
+递归方法求树的高度
+```C++
+class Solution {
+public:
+	int maxDepth(TreeNode* root) {
+		if (root == NULL) return 0;
+		return 1 + max(maxDepth(root->left), maxDepth(root->right));
+	}
+};
+```
 
+# 110. BalancedBinaryTree
+判断平衡树，递归的方法，用到求解树的高度，在判断的时候需要对每个结点是否平衡进行判断。
+```C++
+class Solution {
+public:
+	bool isBalanced(TreeNode* root) {
+		if (root == NULL) return true;
+		if (abs(height(root->right) - height(root->left)) <= 1) return isBalanced(root->right) && isBalanced(root->left);
+		return false;
+	}
+	int height(TreeNode* root) {
+		if (root == NULL) return 0;
+		return 1 + max(height(root->right), height(root->left));
+	}
+};
+```
+
+# 112. PathSum
+
+```C++
+class Solution {
+public:
+	bool hasPathSum(TreeNode* root, int sum) {
+		if (root == NULL) return false;
+		if ( root->left == NULL && root->right == NULL && root->val == sum) return true;
+		return hasPathSum(root->left, sum - root->val) || hasPathSum(root->right, sum - root->val);
+	}
+};
+```
+
+# 144. BinaryTreePreorderTraversal
+非递归实现树的前序遍历
+
+# 437. PathSumIII
+统计路径和等于一个数的路径数量
+```C++
+struct TreeNode {
+     int val;
+     TreeNode *left;
+     TreeNode *right;
+     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ };
+
+//以根结点为起点或者，不以根节点为起点，两个函数
+class Solution {
+public:
+	int pathSum(TreeNode* root, int sum) {
+		if (root == NULL) return 0;	
+		int ret = rootPathSum(root, sum) + pathSum(root->left, sum) + pathSum(root->right, sum);
+		return ret;
+	}
+	int rootPathSum(TreeNode* root, int sum) {//以根节点为起点
+		if (root == NULL) return 0;
+		int ret = 0;
+		if (root->val == sum) ret++;
+		ret += rootPathSum(root->left, sum - root->val) + rootPathSum(root->right, sum - root->val);
+		return ret;
+	}
+};
+```
+# 617. MergeTwoBinaryTrees
+归并两棵树，对根节点初始化，对根节点的左右结点进行递归。
+```C++
+class Solution {
+public:
+	TreeNode* mergeTrees(TreeNode* t1, TreeNode* t2) {
+		if (t1 == NULL && t2 == NULL) return NULL;
+		if (t1 == NULL) return t2;
+		if (t2 == NULL) return t1;
+		TreeNode* root = new TreeNode(t1->val + t2->val);
+		root->left = mergeTrees(t1->left, t2->left);
+		root->right = mergeTrees(t1->right, t2->right);
+		return root;
+	}
+};
+```
