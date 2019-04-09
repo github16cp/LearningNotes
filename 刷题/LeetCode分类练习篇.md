@@ -1,5 +1,7 @@
 <!-- GFM-TOC -->
 * [1. 数组](#1-数组)
+* [2. 字符串](#2-字符串)
+* [3. 位运算](#3-位运算)
 <!-- GFM-TOC -->
 
 # 1. 数组
@@ -47,4 +49,84 @@ int main()
 {
 	return 0;
 }
+```
+
+# 2. 字符串
+## 344. Reverse String
+```C++
+class Solution {
+public:
+	void reverseString(vector<char>& s) {
+		if (s.size() == 0) return;
+		int begin = 0, end = s.size() - 1;
+		while (begin < end) {
+			char tmp = s[begin];
+			s[begin] = s[end];
+			s[end] = tmp;
+			begin++, end--;
+		}
+	}
+};
+```
+## 151. Reverse Words in a String
+用`vector<string> tmp`存，时间复杂度太高
+```C++
+#include<iostream>
+#include<string>
+#include<vector>
+using namespace std;
+//"  hello  world!  ";
+class Solution {
+public:
+	string reverseWords(string s) {
+		int nLength = s.length();
+		if (nLength == 0) return s;
+		string res = "";
+		int begin, end;
+		for (int i = nLength - 1; i >= 0;) {
+			while (i >= 0 && s[i] == ' ') i--;
+			end = i;
+			if (i < 0) break;
+			if (!res.empty()) res.push_back(' ');
+			while (i >= 0 && s[i] != ' ') i--;
+			begin = i + 1;
+			res.append(s.substr(begin, end - begin + 1));
+		}
+		return res;
+	}
+};
+
+int main()
+{
+	string str = "  hello  world!  ";
+	Solution  s;
+	cout << s.reverseWords(str) << endl;
+	system("pause");
+	return 0;
+}
+
+```
+
+# 3. 位运算
+## 338. Counting Bits
+```C++
+class Solution {
+public:
+    vector<int> countBits(int num) {
+        vector<int> res;
+        for(int i = 0;i <= num; i++){
+            res.push_back(NumberOf1(i));
+        }
+        return res;
+    }
+    
+    int NumberOf1(int num){
+        int count = 0;
+        while(num){
+            count++;
+            num = num & (num - 1);
+        }
+        return count;
+    }
+};
 ```
