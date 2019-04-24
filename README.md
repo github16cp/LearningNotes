@@ -7,14 +7,22 @@
 
 [DPA Contest](http://www.dpacontest.org/home/)
 
-[HDF5 for Python](https://www.h5py.org/)
+### C++
 
+[剑指Offer题解](https://github.com/github16cp/LearningNotes/blob/master/%E5%88%B7%E9%A2%98/%E5%89%91%E6%8C%87Offer%E9%A2%98%E8%A7%A3.md)
+
+[牛客网](https://www.nowcoder.com/957917052)
+
+[LeetCode](https://leetcode.com/)
+
+### Python
+[莫烦python](https://morvanzhou.github.io/)
+
+### 工具
+[Git](https://github.com/github16cp/LearningNotes/blob/master/Tools/git.md)
 
 ### tensorflow
 [tensorflow](https://github.com/tensorflow/tensorflow)
-
-### keras
-[keras](https://github.com/keras-team/keras)
 
 [keras Document](https://keras.io/)
 
@@ -23,25 +31,12 @@
 ### Pytorch
 [pytorch官网](https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html)
 
-### C++
-
-[剑指Offer题解](https://www.nowcoder.com/957917052)
-
-[牛客网](https://www.nowcoder.com/957917052)
-
-[LeetCode](https://leetcode.com/)
-
-### Python
-[学习笔记](https://github.com/github16cp/Python/tree/master/learningNotes)
-
 ### 博客
 [csdn博客](https://blog.csdn.net/anzhou7262)
 
 ### 论坛
 [stackoverflow](https://stackoverflow.com/questions)
 
-### 写作 
-[SCI模板](http://www.phrasebank.manchester.ac.uk/)
 
 ### 在线学习课程
 
@@ -53,4 +48,4 @@
 
 [复旦大学邱锡鹏](https://nndl.github.io/)
 
-[吴恩达非技术AI普及课《全民AI》](https://www.coursera.org/learn/ai-for-everyone/home/welcome)
+[吴恩达全民AI](https://www.coursera.org/learn/ai-for-everyone/home/welcome)
