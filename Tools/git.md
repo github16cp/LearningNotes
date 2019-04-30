@@ -69,3 +69,6 @@ git bash 中的邮箱地址和github的邮箱地址不一致造成的，在git b
 ```
 git config --global user.email "xx@xx.com"
 ```
+
+## 搭建个人博客网站
+[Github pages](https://pages.github.com/)

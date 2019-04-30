@@ -107,6 +107,107 @@ int main()
 
 ```
 
+## 709. To Lower Case
+```C++
+class Solution {
+public:
+	string toLowerCase(string str) {
+		int len = str.length();
+		if (len == 0) return str;
+		transform(str.begin(), str.end(), str.begin(), ::tolower);		
+		return str;
+	}
+};
+```
+
+## 917. Reverse Only Letters
+对撞指针
+```C++
+class Solution {
+public:
+	string reverseOnlyLetters(string S) {
+		int left = 0;
+		int right = S.size() - 1;
+		while (left < right) {
+			if (((S[left] >= 'A' && S[left] <= 'Z') || (S[left] >= 'a' && S[left] <= 'z')) && ((S[right] >= 'A' && S[right] <= 'Z') || (S[right] >= 'a' && S[right] <= 'z'))) {
+				char tmp = S[left];
+				S[left] = S[right];
+				S[right] = tmp;
+				left++;
+				right--;
+			}
+			else if(!((S[left] >= 'A' && S[left] <= 'Z') || (S[left] >= 'a' && S[left] <= 'z'))){
+				left++;
+			}
+			else {
+				right--;
+			}
+		}
+		return S;
+	}
+};
+```
+
+
+## 824. Goat Latin
+```C++
+class Solution {
+public:
+	string toGoatLatin(string S) {
+		vector<string> res;
+		if (!S.length()) return S;
+		string tmp = "";
+		for (int i = 0; i < S.length(); i++) {
+			if (S[i] != ' ') tmp += S[i];
+			else {
+				res.push_back(tmp);
+				tmp = "";
+			}
+		}
+		res.push_back(tmp);
+
+		int j = 0;
+		for (auto i : res)
+		{
+			if (i[0] == 'a' || i[0] == 'e' || i[0] == 'i' || i[0] == 'o' || i[0] == 'u' || i[0] == 'A' || i[0] == 'E' || i[0] == 'I' || i[0] == 'O' || i[0] == 'U')
+				i += "ma";
+			else {
+				string temp = "";
+				if (i.length() > 1) {
+					temp = i.substr(1, i.length() - 1);
+					temp += i[0];
+					i = temp;
+				}
+				i += "ma";
+			}
+			res[j++] = i;
+		}
+		j = 0;
+		for (auto i : res)
+		{
+			int k = 0;
+			while (k++ < (j + 1)) {
+				i += "a";
+			}
+			res[j++] = i;
+		}
+		string result = "";
+		for (auto i : res) {
+			result += i;
+			result += " ";
+		}
+		S = result.substr(0, result.length() - 1);
+		return S;
+	}
+};
+```
+
+```C++
+```
+
+```C++
+```
+
 # 3. 位运算
 ## 338. Counting Bits
 ```C++
