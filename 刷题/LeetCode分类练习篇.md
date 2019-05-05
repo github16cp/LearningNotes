@@ -5,6 +5,7 @@
 <!-- GFM-TOC -->
 
 # 1. 数组
+[array类题目](https://leetcode.com/problemset/all/?topicSlugs=array)
 ## 15. 3Sum
 二分查找，寻找3个数相加为0。
 ```C++
@@ -81,10 +82,70 @@ int main()
 	return 0;
 }
 ```
+## 27. Remove Element
+```C++
+class Solution {
+public:
+	int removeElement(vector<int>& nums, int val) {
+		int len = nums.size();
+		if (len == 0) return 0;
+		for (vector<int>::iterator it = nums.begin(); it != nums.end();) {
+			if (*it == val)
+				it = nums.erase(it);
+			else it++;
+		}
+		return nums.size();
+	}
+};
+```
+
+## 35. Search Insert Position
+```C++
+class Solution {
+public:
+	int searchInsert(vector<int>& nums, int target) {
+		int len = nums.size();
+		if (len == 0) return 0;		
+		if (nums[0] >= target)
+			return 0;
+		int i = 0;
+		for (; i + 1 < len; i++) {
+			if (nums[i] == target)
+				return i;
+			if (nums[i] < target && nums[i + 1] >= target)
+				return i + 1;
+		}
+		return len;
+	}
+};
+```
+## 53. Maximum Subarray
+```C++
+class Solution {
+public:
+	int maxSubArray(vector<int>& nums) {
+		int len = nums.size();
+		if (len == 0) return 0;
+		int cursum = 0;//累加的子数组的和
+		int greatsum = 0x80000000;//最大的子数组的和
+		for (int i = 0; i < len; i++) {
+			if (cursum <= 0)
+				cursum = nums[i];
+			else
+				cursum += nums[i];
+
+			if (cursum > greatsum)
+				greatsum = cursum;
+		}
+		return greatsum;
+	}
+};
+```
 
 ```C++
 
 ```
+
 ```C++
 
 ```
