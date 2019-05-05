@@ -50,7 +50,44 @@ int main()
 	return 0;
 }
 ```
+## 26. Remove Duplicates from Sorted Array
+```C++
+#include <iostream>
+#include <vector>
+using namespace std;
 
+class Solution {
+public:
+	int removeDuplicates(vector<int>& nums) {
+		int len = nums.size();
+		if (len == 0) return 0;
+		if (len == 1) return 1;
+
+		for (vector<int>::iterator it = nums.begin(); (it + 1)!= nums.end(); ) {
+			if (*it == *(it+1))
+				nums.erase(it+1);
+			else it++;
+		}
+		return nums.size();
+	}
+};
+
+int main()
+{	
+	Solution ss;
+	vector<int> nums = { 0,0,1,1,1,2,2,3,3,4 };
+	cout << ss.removeDuplicates(nums) << endl;
+	system("pause");
+	return 0;
+}
+```
+
+```C++
+
+```
+```C++
+
+```
 # 2. 字符串
 ## 344. Reverse String
 ```C++
