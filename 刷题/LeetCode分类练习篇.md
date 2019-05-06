@@ -141,13 +141,104 @@ public:
 	}
 };
 ```
-
+## 66. Plus One
 ```C++
+#include <iostream>
+#include <vector>
+using namespace std;
 
+class Solution {
+public:
+	vector<int> plusOne(vector<int>& digits) {
+		if (!digits.size()) return digits;
+		int carry = 1;
+		for (int i = digits.size() - 1; i >= 0; --i) {
+			int tmp = digits[i] + carry;
+			digits[i] = tmp % 10;
+			carry = tmp / 10;
+		}
+		if (carry) digits.insert(digits.begin(), carry);
+		return digits;
+	}
+};
+
+int main() {
+	Solution s;
+	vector<int> vec = { 1,2,3 };
+	vector<int> res;
+	res = s.plusOne(vec);
+	for (auto i : res)
+		cout << i << " ";
+	cout << endl;
+	system("pause");
+	return 0;
+}
+```
+## 88. Merge Sorted Array
+```C++
+class Solution {
+public:
+	void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+		if (!nums2.size()) return;
+		if (!nums1.size()) return;
+		if (nums1.size() < (m + n)) return;
+		int j = 0;
+		for (int i = m; i < nums1.size() && j < nums1.size(); ++i)
+			nums1[i] = nums2[j++];
+		sort(nums1.begin(), nums1.end());
+	}
+};
+```
+## 118. Pascal's Triangle
+杨辉三角
+```C++
+class Solution {
+public:
+	vector<vector<int>> generate(int numRows) {
+		vector<vector<int> > res;
+		if (numRows == 0) return res;
+
+		vector<int> tmp(1, 1);//第一个
+		res.push_back(tmp);
+
+		for (int i = 2; i <= numRows; i++) {
+			tmp.push_back(0);
+			vector<int> cur = tmp;
+			for (int j = 1; j < i; j++)
+				cur[j] = tmp[j] + tmp[j - 1];
+			res.push_back(cur);
+			tmp = cur;
+		}
+		return res;
+	}
+};
+```
+## 119. Pascal's Triangle II
+```C++
+class Solution {
+public:
+	vector<int> getRow(int rowIndex) {
+		vector<int> res;
+		if (rowIndex < 0) return res;
+
+		vector<int> last(1,1);///rowIndex = 0
+		res = last;
+		for (int i = 2; i < rowIndex + 2; i++) {//rowIndex = 1;
+			last.push_back(0);
+			res = last;
+			for (int j = 1; j < i; j++)
+				res[j] = last[j] + last[j - 1];
+			last = res;
+		}
+		return res;
+	}
+};
 ```
 
 ```C++
+```
 
+```C++
 ```
 # 2. 字符串
 ## 344. Reverse String
