@@ -2,6 +2,7 @@
 * [1. 数组](#1-数组)
 * [2. 字符串](#2-字符串)
 * [3. 位运算](#3-位运算)
+* [4. 哈希表](#4-哈希表)
 <!-- GFM-TOC -->
 
 # 1. 数组
@@ -234,6 +235,24 @@ public:
 	}
 };
 ```
+## 121. Best Time to Buy and Sell Stock
+```C++
+class Solution {
+public:
+	int maxProfit(vector<int>& prices) {
+		int len = prices.size();
+		if (len <= 1) return 0;
+		int res = prices[1] - prices[0], minprice = prices[0];
+		for (int i = 2; i < len; i++) {
+			minprice = min(minprice, prices[i - 1]);
+			if (res < prices[i] - minprice)
+				res = prices[i] - minprice;
+		}
+		if (res < 0) return 0;
+		return res;
+	}
+};
+```
 
 ```C++
 ```
@@ -241,6 +260,7 @@ public:
 ```C++
 ```
 # 2. 字符串
+[字符串](https://leetcode.com/problemset/all/?topicSlugs=string)
 ## 344. Reverse String
 ```C++
 class Solution {
@@ -390,8 +410,65 @@ public:
 	}
 };
 ```
-
+## 13. Roman to Integer
 ```C++
+class Solution {
+public:
+	int romanToInt(string s) {		
+		int res = 0;
+		unordered_map<char, int> m{ {'I',1} ,{'V',5} , {'X',10} , {'L',50} , {'C',100} , {'D',500} , {'M',1000} };
+		for (int i = 0; i < s.size(); i++) {
+			int val = m[s[i]];
+			if (i == s.size() - 1 || m[s[i + 1]] <= m[s[i]]) res += val;
+			else res -= val;
+		}
+		return res;
+	}
+};
+```
+## 14. Longest Common Prefix
+```C++
+bool cmp(const string& s1, const string& s2) {
+	return s1.size() < s2.size();
+}
+
+class Solution {
+public:
+	string longestCommonPrefix(vector<string>& strs) {
+		if (strs.size() == 0) return "";
+		string res = "";
+		sort(strs.begin(), strs.end(), cmp);
+		for (int j = 0; j < strs[strs.size() - 1].length(); j++) {
+			int i = 0;
+			while (i < (strs.size() - 1) && strs[i][j] == strs[i + 1][j]) i++;
+			if (i == strs.size() - 1) res += strs[i][j];
+			else break;
+		}
+		return res;
+	}
+};
+```
+## 20. Valid Parentheses
+```C++
+class Solution {
+public:
+	bool isValid(string s) {
+		if (s.length() == 0) return true;
+		stack<char> res;
+		for (int i = 0; i < s.length(); i++) {
+			if (s[i] == '(')
+				res.push(')');
+			else if (s[i] == '[')
+				res.push(']');
+			else if (s[i] == '{')
+				res.push('}');
+			else if (res.empty() || s[i] != res.top())
+				return false;
+			else res.pop();
+		}
+		return res.empty();
+	}
+};
 ```
 
 ```C++
@@ -419,4 +496,36 @@ public:
         return count;
     }
 };
+```
+# 4. 哈希表
+[哈希表](https://leetcode.com/problemset/all/?topicSlugs=hash-table)
+## 136. Single Number
+```C++
+class Solution {
+public:
+	int singleNumber(vector<int>& nums) {
+		if (nums.size() <= 0) return 0;
+		int tmp = 0;
+		for (int i = 0; i < nums.size(); i++) {
+			tmp = tmp ^ nums[i];
+		}
+		return tmp;
+	}
+};
+```
+
+```C++
+
+```
+
+```C++
+
+```
+
+```C++
+
+```
+
+```C++
+
 ```
