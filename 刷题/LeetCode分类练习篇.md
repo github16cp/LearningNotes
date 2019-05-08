@@ -3,6 +3,7 @@
 * [2. 字符串](#2-字符串)
 * [3. 位运算](#3-位运算)
 * [4. 哈希表](#4-哈希表)
+* [5. 链表](#5-链表)
 <!-- GFM-TOC -->
 
 # 1. 数组
@@ -525,7 +526,90 @@ public:
 ```C++
 
 ```
-
+# 5. 链表
+[链表](https://leetcode.com/problemset/all/?topicSlugs=linked-list)
+## 21. Merge Two Sorted Lists
 ```C++
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+	ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+		if (l1 == nullptr) return l2;
+		if (l2 == nullptr) return l1;
+		ListNode* lres = nullptr;
+		if (l1->val <= l2->val) {
+			lres = l1;
+			lres->next = mergeTwoLists(l1->next, l2);
+		}
+		else {
+			lres = l2;
+			lres->next = mergeTwoLists(l1, l2->next);
+		}
+		return lres;
+	}
+};
 
+```
+## 83. Remove Duplicates from Sorted List
+```C++
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+	ListNode* deleteDuplicates(ListNode* head) {
+		if (head == nullptr || head->next == nullptr) return head;
+		ListNode* lres = head;
+		ListNode* tmp = head->next;
+		while (tmp != nullptr) {
+			if (lres->val == tmp->val) {
+				tmp = tmp->next;
+			}
+			else {
+				lres->next = tmp;
+				lres = tmp;
+				tmp = tmp->next;
+			}
+		}
+		lres->next = nullptr;
+		return head;
+	}
+};
+```
+## 141. Linked List Cycle
+```C++
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+	bool hasCycle(ListNode *head) {
+		if (head == nullptr || head->next == nullptr) return false;
+		ListNode* slow = head;
+		ListNode* fast = head;
+		while (fast && fast->next) {
+			slow = slow->next;
+			fast = fast->next->next;
+			if (slow == fast) return true;
+		}
+		return false;
+	}
+};
 ```
