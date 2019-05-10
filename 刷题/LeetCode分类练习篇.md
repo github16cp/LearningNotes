@@ -729,9 +729,246 @@ public:
 	}
 };
 ```
+## 234. Palindrome Linked List
+```C++
+#include <iostream>
+#include <string>
+#include <stack>
+using namespace std;
+
+struct ListNode
+{	
+	int val;
+	ListNode *next;
+	ListNode(int x) :val(x), next(NULL) {}
+};
+
+class Solution {
+public:
+	ListNode* reverse(ListNode *head) {
+		ListNode *res = nullptr;
+		ListNode *curNode = head;
+		ListNode *preNode = nullptr;
+		while (curNode != nullptr) {
+			ListNode *nextNode = curNode->next;
+			curNode->next = preNode;
+			if (nextNode == nullptr) res = curNode;
+			preNode = curNode;
+			curNode = nextNode;
+		}
+		return res;
+	}
+	bool isPalindrome(ListNode* head) {
+		if (head == nullptr) return true;
+		ListNode *ptr = head;
+		int len = 0;
+		while (ptr != nullptr) {
+			ptr = ptr->next;
+			len++;
+		}		
+		if (len % 2 == 0) {
+			len /= 2;			
+		}
+		else {
+			len = len / 2 + 1;
+		}
+		ptr = head;
+		while (len > 1) {
+			ptr = ptr->next;
+			len--;
+		}
+		ListNode *head2 = ptr->next;
+		ptr->next = nullptr;
+		head2 = reverse(head2);
+		while (head2 != nullptr) {
+			if (head2->val != head->val) return false;
+			head = head->next;
+			head2 = head2->next;
+		}
+		return true;
+	}
+};
+
+//尾插法建立单链表
+ListNode * Creat_LinkList_R()
+{
+	int x;
+	ListNode *head, *p, *tail;                    //tail是尾指针
+	head = (ListNode*)malloc(sizeof(ListNode));
+	if (head == NULL)
+		return head;
+	head->next = NULL;
+	tail = head;                                  //一开始尾指针指向头指针的位置
+	cout << "请输入要录入的数以0结束" << endl;
+	cin >> x;
+	head->val = x;
+	while ((cin >> x) && (x != 0))
+	{
+		p = (ListNode*)malloc(sizeof(ListNode));
+		if (p == NULL)
+			return head;
+		p->val = x;
+		tail->next = p;                          //将p插入到尾节点的后面
+		tail = p;                                //修改尾节点的指向
+		tail->next = NULL;                       //将尾节点的指针域修改为空
+	}
+	return head;
+}
+
+int main() {
+	Solution s;
+	ListNode *list1;
+	list1 = Creat_LinkList_R();
+	cout << s.isPalindrome(list1) << endl;
+	system("pause");
+	return 0;
+}
+```
+## 237. Delete Node in a Linked List
+```C++
+class Solution {
+public:
+	void deleteNode(ListNode* node) {
+		*node = *(node->next);
+	}
+};
+```
+
+```C++
+class Solution {
+public:
+	void deleteNode(ListNode* node) {
+		ListNode *tmp = node->next;
+        *node = *tmp;
+        delete tmp;
+	}
+};
+```
+
+## 707. Design Linked List
+```C++
+class MyLinkedList {
+public:
+	class MyLinkedListNode {
+	public:
+		int val;
+		MyLinkedListNode* next = nullptr;
+		MyLinkedListNode* prev = nullptr;
+		MyLinkedListNode() :val{ 0 }, next{ nullptr }, prev{ nullptr } {};
+	};
+
+	MyLinkedListNode* root = nullptr;
+	/** Initialize your data structure here. */
+	MyLinkedList() {
+		MyLinkedListNode* root{};
+	}
+
+	/** Get the value of the index-th node in the linked list. If the index is invalid, return -1. */
+	int get(int index) {
+		if (index < 0)
+			return -1;
+		MyLinkedListNode* tmp = root;
+		if (tmp == nullptr) return -1;
+		for (int i = 0; i < index; i++) {
+			if (tmp->next != nullptr)
+				tmp = tmp->next;
+			else
+				return -1;
+		}
+		return tmp->val;
+	}
+
+	/** Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list. */
+	void addAtHead(int val) {
+		MyLinkedListNode* newhead = new MyLinkedListNode();
+		newhead->val = val;
+		newhead->next = root;
+		if (root != nullptr)
+			root->prev = newhead;
+		root = newhead;
+	}
+
+	/** Append a node of value val to the last element of the linked list. */
+	void addAtTail(int val) {
+		MyLinkedListNode* tail = root;
+		while (tail != nullptr && tail->next != nullptr)
+			tail = tail->next;
+		MyLinkedListNode* newtail = new MyLinkedListNode();
+		newtail->val = val;
+		if (tail != nullptr)
+			tail->next = newtail;
+		else
+			tail = newtail;
+		newtail->prev = tail;
+	}
+
+	/** Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted. */
+	void addAtIndex(int index, int val) {
+		if (index <= 0) {
+			addAtHead(val);
+			return;
+		}
+		if (get(index - 1) != -1) {
+			MyLinkedListNode* previous = root;
+			MyLinkedListNode* newone = new MyLinkedListNode();
+			newone->val = val;
+			for (int i = 0; i < index - 1; i++)
+			{
+				previous = previous->next;
+			}
+			newone->prev = previous;
+			newone->next = previous->next;
+			if (previous->next != nullptr)
+				previous->next->prev = newone;
+			previous->next = newone;
+			return;
+		}
+		else return;
+	}
+
+	/** Delete the index-th node in the linked list, if the index is valid. */
+	void deleteAtIndex(int index) {
+		if (index < 0) return;
+		if (get(index) != -1) {
+			MyLinkedListNode* tmp = root;
+			for (int i = 0; i < index; i++) {
+				tmp = tmp->next;
+			}
+			if (tmp->prev != nullptr)
+				tmp->prev->next = tmp->next;
+			if (tmp->next != nullptr)
+				tmp->next->prev = tmp->prev;
+
+			if (index == 0)
+				root = tmp->next;
+			return;
+		}
+		else return;
+	}
+};
+
+int main() {
+	MyLinkedList linkedList;
+	linkedList.addAtHead(7);
+	linkedList.addAtHead(2);
+	linkedList.addAtHead(1);
+	linkedList.addAtIndex(3, 0);  // linked list becomes 1->2->3
+	linkedList.deleteAtIndex(2);  // now the linked list is 1->3
+	linkedList.addAtHead(6);
+	linkedList.addAtTail(4);
+	linkedList.get(4);            // returns 2
+	linkedList.addAtHead(4);
+	linkedList.addAtIndex(5, 0);  // linked list becomes 1->2->3
+	linkedList.addAtHead(6);
+	system("pause");
+	return 0;
+}
+```
+
 
 ```C++
 ```
+
 
 ```C++
 ```
