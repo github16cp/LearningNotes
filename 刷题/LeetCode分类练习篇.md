@@ -557,6 +557,44 @@ public:
 };
 
 ```
+非递归方法
+```C++
+class Solution {
+public:
+	ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+		if (l1 == nullptr) return l2;
+		if (l2 == nullptr) return l1;
+		ListNode head(0);
+		ListNode *lres = &head;
+		while (l1 != nullptr && l2 != nullptr) {
+			if (l1->val <= l2->val) {
+				lres->next = l1;
+				l1 = l1->next;
+			}
+			else {
+				lres->next = l2;
+				l2 = l2->next;
+			}
+			lres = lres->next;
+		}
+		if (l1 != nullptr) {
+			while (l1 != nullptr) {
+				lres->next = l1;
+				lres = lres->next;
+				l1 = l1->next;
+			}
+		}
+		else {
+			while (l2 != nullptr) {
+				lres->next = l2;
+				lres = lres->next;
+				l2 = l2->next;
+			}
+		}
+		return head.next;
+	}
+};
+```
 ## 83. Remove Duplicates from Sorted List
 ```C++
 /**
@@ -612,4 +650,88 @@ public:
 		return false;
 	}
 };
+```
+## 160. Intersection of Two Linked Lists
+```C++
+class Solution {
+public:
+	ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+		if (headA == nullptr || headB == nullptr) return nullptr;
+		ListNode *nodeA = headA, *nodeB = headB;
+		int lenA = 0, lenB = 0;
+		while (nodeA != nullptr) {
+			lenA++;
+			nodeA = nodeA->next;
+		}
+		while (nodeB != nullptr) {
+			lenB++;
+			nodeB = nodeB->next;
+		}
+		if (lenA <= lenB) {
+			for (int i = 0; i < lenB - lenA; i++) {
+				headB = headB->next;
+			}
+		}
+		else {
+			for (int i = 0; i < lenA - lenB; i++) {
+				headA = headA->next;
+			}
+		}
+		while (headA != headB && headA != nullptr && headB != nullptr) {
+			headA = headA->next;
+			headB = headB->next;
+		}
+		if (headA != nullptr && headB != nullptr) return headA;
+		else return nullptr ;
+	}
+};
+```
+## 203. Remove Linked List Elements
+```C++
+class Solution {
+public:
+	ListNode* removeElements(ListNode* head, int val) {
+		if (head == nullptr) return head;
+		while (head->val == val) {
+			head = head->next;
+			if (head == nullptr) return head;
+		}
+		ListNode *ptr = head;
+		while (ptr->next!= nullptr)
+		{
+			if (ptr->next->val == val) {
+				ptr->next = ptr->next->next;
+			}
+			else {
+				ptr = ptr->next;
+			}
+		}
+		return head;
+	}
+};
+```
+## 206. Reverse Linked List
+```C++
+class Solution {
+public:
+	ListNode* reverseList(ListNode* head) {
+		ListNode *res = nullptr;
+		ListNode *curNode = head;
+		ListNode *preNode = nullptr;
+		while (curNode != nullptr) {
+			ListNode *nextNode = curNode->next;
+			if (nextNode == nullptr) res = curNode;
+			curNode->next = preNode;
+			preNode = curNode;
+			curNode = nextNode;
+		}
+		return res;
+	}
+};
+```
+
+```C++
+```
+
+```C++
 ```
