@@ -254,8 +254,100 @@ public:
 	}
 };
 ```
-
+## 167. Two Sum II - Input array is sorted
 ```C++
+class Solution {
+public:
+	vector<int> twoSum(vector<int>& numbers, int target) {
+		if (numbers.size() == 0) return {};
+		int begin = 0, end = numbers.size() - 1;
+		while (begin < end) {
+			int sum = numbers[begin] + numbers[end];
+			if (sum == target)
+				return { begin + 1,end + 1 };
+			else if (sum > target) {
+				end--;
+			}
+			else begin++;
+		}
+		return {};
+	}
+};
+```
+## 217. Contains Duplicate
+```C++
+class Solution {
+public:
+	bool containsDuplicate(vector<int>& nums) {
+		return nums.size() > set<int>(nums.begin(), nums.end()).size();
+	}
+};
+```
+## 219. Contains Duplicate II
+```C++
+//set中保留距离小于等于k的不重复元素，如果元素在s中返回true，否则更新set
+class Solution {
+public:
+	bool containsNearbyDuplicate(vector<int>& nums, int k) {
+		unordered_set<int> s;
+		if (k <= 0) return false;
+		if (k >= nums.size()) k = nums.size() - 1;
+
+		for (int i = 0; i < nums.size(); i++) {
+			if (i > k) s.erase(nums[i - k - 1]);
+			if (s.find(nums[i]) != s.end()) return true;
+			s.insert(nums[i]);
+		}
+		return false;
+	}
+};
+```
+## 169. Majority Element
+```C++
+class Solution {
+public:
+	int majorityElement(vector<int>& nums) {
+		if (nums.size() == 0) return 0;
+		int res = nums[0];
+		int times = 1;
+		for (int i = 1; i < nums.size(); i++) {
+			if (times == 0) {
+				res = nums[i];
+				times = 1;
+			}
+			else if (nums[i] == res) times++;
+			else times--;
+		}
+		return res;
+	}
+};
+```
+## 189. Rotate Array
+```C++
+class Solution {
+public:
+	void rotate(vector<int>& nums, int k) {
+		k %= nums.size();
+		reverse(nums.begin(), nums.end());
+		reverse(nums.begin(), nums.begin() + k);
+		reverse(nums.begin() + k, nums.end());
+	}
+};
+```
+## 58. Length of Last Word
+```C++
+class Solution {
+public:
+	int lengthOfLastWord(string s) {
+		int res = 0;		
+		istringstream is(s);
+		string laststr = "";
+		while (is >> laststr) {
+			res = laststr.length();
+		}
+		return res;
+	}
+};
 ```
 
 ```C++
@@ -965,8 +1057,79 @@ int main() {
 }
 ```
 
-
+## 876. Middle of the Linked List
 ```C++
+#include <iostream>
+#include <string>
+#include <stack>
+using namespace std;
+
+struct ListNode {
+	int val;
+	ListNode* next;
+	ListNode(int x) :val(x),next(nullptr) {}
+};
+
+class Solution {
+public:
+	ListNode* middleNode(ListNode* head) {
+		if (head == nullptr) return head;
+		ListNode *ptr = head;
+		int cnt = 0;
+		while (ptr != nullptr) {
+			cnt++;
+			ptr = ptr->next;
+		}
+		if (cnt % 2 == 1) {
+			cnt = cnt / 2 + 1;
+		}
+		else {
+			cnt = cnt / 2 + 1;
+		}
+		ptr = head;
+		while (cnt > 1) {
+			ptr = ptr->next;
+			cnt--;
+		}
+		return ptr;
+	}
+};
+
+//尾插法建立单链表
+ListNode * Creat_LinkList_R()
+{
+	int x;
+	ListNode *head, *p, *tail;                    //tail是尾指针
+	head = (ListNode*)malloc(sizeof(ListNode));
+	if (head == NULL)
+		return head;
+	head->next = NULL;
+	tail = head;                                  //一开始尾指针指向头指针的位置
+	cout << "请输入要录入的数以0结束" << endl;
+	cin >> x;
+	head->val = x;
+	while ((cin >> x) && (x != 0))
+	{
+		p = (ListNode*)malloc(sizeof(ListNode));
+		if (p == NULL)
+			return head;
+		p->val = x;
+		tail->next = p;                          //将p插入到尾节点的后面
+		tail = p;                                //修改尾节点的指向
+		tail->next = NULL;                       //将尾节点的指针域修改为空
+	}
+	return head;
+}
+
+int main() {
+	Solution s;
+	ListNode *list1;
+	list1 = Creat_LinkList_R();
+	ListNode *res;
+	res = s.middleNode(list1);
+	system("pause");
+	return 0;
+}
 ```
 
 
