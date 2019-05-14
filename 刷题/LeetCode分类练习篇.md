@@ -4,6 +4,7 @@
 * [3. 位运算](#3-位运算)
 * [4. 哈希表](#4-哈希表)
 * [5. 链表](#5-链表)
+* [6. Math](#6-Math)
 <!-- GFM-TOC -->
 
 # 1. 数组
@@ -1134,4 +1135,67 @@ int main() {
 
 
 ```C++
+```
+
+# 6. Math
+[Math](https://leetcode.com/problemset/all/?topicSlugs=math)
+## 67. Add Binary
+```C++
+class Solution {
+public:
+	string addBinary(string a, string b) {
+		string res = "";
+		int carry = 0, index_a = a.length() - 1, index_b = b.length() - 1;
+		while (carry > 0 || index_a >= 0 || index_b >= 0) {
+			carry += index_a >= 0 ? a[index_a--] - '0' : 0;
+			carry += index_b >= 0 ? b[index_b--] - '0' : 0;
+			res = char(carry % 2 + '0') + res;
+			carry /= 2;
+		}
+		return res;
+	}
+};
+```
+## 69. Sqrt(x)
+```C++
+class Solution {
+public:
+	int mySqrt(int x) {
+		long r = x;
+		while (r*r > x) {
+			r = (r + x / r) / 2;
+		}
+		return r;
+	}
+};
+```
+## 204. Count Primes
+```C++
+class Solution {
+public:
+	int countPrimes(int n) {
+		vector<bool> notPrime(n);
+		int count = 0;
+		for (int i = 2; i < n; i++) {
+			if (notPrime[i] == false) {
+				count++;
+				for (int j = 2; i*j < n; j++) {
+					notPrime[i*j] = true;
+				}
+			}
+		}
+		return count;
+	}
+};
+```
+## 231. Power of Two
+```C++
+//位操作，如果一个数是2的幂，其2进制表示位置只有最高位1，则(n&(n - 1)) == 0
+class Solution {
+public:
+	bool isPowerOfTwo(int n) {
+		if (n <= 0) return false;
+		return !(n&(n - 1));
+	}
+};
 ```
