@@ -5,6 +5,7 @@
 * [4. 哈希表](#4-哈希表)
 * [5. 链表](#5-链表)
 * [6. Math](#6-Math)
+* [7. 对撞指针](#7-对撞指针)
 <!-- GFM-TOC -->
 
 # 1. 数组
@@ -350,8 +351,20 @@ public:
 	}
 };
 ```
-
+## 434. Number of Segments in a String
 ```C++
+class Solution {
+public:
+	int countSegments(string s) {
+		int count = 0;
+		istringstream is(s);
+		string tmp;
+		while (is >> tmp) {
+			count++;
+		}
+		return count;
+	}
+};
 ```
 # 2. 字符串
 [字符串](https://leetcode.com/problemset/all/?topicSlugs=string)
@@ -564,7 +577,25 @@ public:
 	}
 };
 ```
+## 415. Add Strings
+```C++
+class Solution {
+public:
+	string addStrings(string num1, string num2) {
+		int c = 0, len1 = num1.size() - 1, len2 = num2.size() - 1;
+		string res = "";
+		while (c > 0 || len1 >= 0 || len2 >= 0) {
+			c += len1 >= 0 ? num1[len1--] - '0' : 0;
+			c += len2 >= 0 ? num2[len2--] - '0' : 0;
+			res = char(c % 10 + '0')+ res;
+			c /= 10;
+		}
+		return res;
+	}
+};
+```
 
+##
 ```C++
 ```
 
@@ -1198,4 +1229,73 @@ public:
 		return !(n&(n - 1));
 	}
 };
+```
+# 7. 对撞指针
+[Two Pointers](https://leetcode.com/problemset/all/?topicSlugs=two-pointers)
+## 125. Valid Palindrome
+```C++
+class Solution {
+public:
+	bool isPalindrome(string s) {
+		if (s.length() == 0) return true;
+		int left = 0, right = s.length() - 1;
+		while (left < right) {
+			if (s[left] == s[right] || s[left] == tolower(s[right]) || s[left] == toupper(s[right])) {
+				left++;
+				right--;
+			}
+			else if (!(s[left] >= 'a' && s[left] <= 'z') && !(s[left] >= 'A' && s[left] <= 'Z') && !(s[left] >= '0' && s[left] <= '9')) {
+				left++;
+			}
+			else if (!(s[right] >= 'a' && s[right] <= 'z') && !(s[right] >= 'A' && s[right] <= 'Z') && !(s[right] >= '0' && s[right] <= '9')) {
+				right--;
+			}
+			else return false;
+		}
+		return true;
+	}
+};
+```
+## 345. Reverse Vowels of a String
+```C++
+class Solution {
+public:
+	string reverseVowels(string s) {
+		if (s.length() == 0) return "";
+		int left = 0, right = s.length() - 1;
+		while (left < right) {
+			if ((s[left] == 'a' || s[left] == 'e' || s[left] == 'i' || s[left] == 'o' || s[left] == 'u' ||
+				s[left] == 'A' || s[left] == 'E' || s[left] == 'I' || s[left] == 'O' || s[left] == 'U')
+				&& (s[right] == 'a' || s[right] == 'e' || s[right] == 'i' || s[right] == 'o' || s[right] == 'u'
+					|| s[right] == 'A' || s[right] == 'E' || s[right] == 'I' || s[right] == 'O' || s[right] == 'U')) {
+				char tmp = s[left];
+				s[left] = s[right];
+				s[right] = tmp;
+				left++;
+				right--;
+			}
+			else if (!(s[left] == 'a' || s[left] == 'e' || s[left] == 'i' || s[left] == 'o' || s[left] == 'u' ||
+				s[left] == 'A' || s[left] == 'E' || s[left] == 'I' || s[left] == 'O' || s[left] == 'U')) {
+				left++;
+			}
+			else if (!(s[right] == 'a' || s[right] == 'e' || s[right] == 'i' || s[right] == 'o' || s[right] == 'u'
+				|| s[right] == 'A' || s[right] == 'E' || s[right] == 'I' || s[right] == 'O' || s[right] == 'U')) {
+				right--;
+			}
+			else {
+				right--;
+				left++;
+			}
+		}
+		return s;
+	}
+};
+```
+
+```C++
+
+```
+
+```C++
+
 ```
