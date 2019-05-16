@@ -6,6 +6,7 @@
 * [5. 链表](#5-链表)
 * [6. Math](#6-Math)
 * [7. 对撞指针](#7-对撞指针)
+* [8. 二分搜索](#8-二分搜索)
 <!-- GFM-TOC -->
 
 # 1. 数组
@@ -1298,4 +1299,51 @@ public:
 
 ```C++
 
+```
+# 8. 二分搜索
+[二分搜索](https://leetcode.com/problemset/all/?topicSlugs=binary-search)
+
+## 278. First Bad Version
+```C++
+bool isBadVersion(int version);
+
+class Solution {
+public:
+	int firstBadVersion(int n) {
+		int start = 0, end = n;
+		while (end - start > 1) {
+			int mid = start + (end - start) / 2;
+			if (isBadVersion(mid)) end = mid;
+			else start = mid;
+		}
+		return end;
+	}
+};
+```
+## 349. Intersection of Two Arrays
+```C++
+//将第二个数组排序，二分查找第一个元素是否在第二个中
+class Solution {
+public:
+	vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+		unordered_set<int> res;
+		sort(nums2.begin(), nums2.end());
+		for (auto i : nums1) {
+			if (binarySearch(nums2, i)) {
+				res.insert(i);
+			}
+		}
+		return vector<int>(res.begin(), res.end());
+	}
+	bool binarySearch(vector<int>& nums, int target) {
+		int left = 0, right = nums.size() - 1;
+		while (left <= right) {
+			int mid = left + (right - left) / 2;
+			if (nums[mid] == target) return true;
+			else if (nums[mid] > target) right = mid - 1;
+			else left = mid + 1;
+		}
+		return false;
+	}
+};
 ```
