@@ -1,12 +1,13 @@
 <!-- GFM-TOC -->
 * [1. 数组](#1-数组)
-* [2. 字符串](#2-字符串)
-* [3. 位运算](#3-位运算)
-* [4. 哈希表](#4-哈希表)
-* [5. 链表](#5-链表)
-* [6. Math](#6-Math)
-* [7. 对撞指针](#7-对撞指针)
-* [8. 二分搜索](#8-二分搜索)
+* [2. 哈希表](#2-哈希表)
+* [3. 链表](#3-链表)
+* [4. Math](#4-Math)
+* [5. 对撞指针](#5-对撞指针)
+* [6. 字符串](#6-字符串)
+* [7. 二分搜索](#7-二分搜索)
+* [8. 分治](#8-分治)
+* [15. 位操作](#15-位操作)
 <!-- GFM-TOC -->
 
 # 1. 数组
@@ -367,7 +368,7 @@ public:
 	}
 };
 ```
-# 2. 字符串
+# 6. 字符串
 [字符串](https://leetcode.com/problemset/all/?topicSlugs=string)
 ## 344. Reverse String
 ```C++
@@ -600,30 +601,8 @@ public:
 ```C++
 ```
 
-# 3. 位运算
-## 338. Counting Bits
-```C++
-class Solution {
-public:
-    vector<int> countBits(int num) {
-        vector<int> res;
-        for(int i = 0;i <= num; i++){
-            res.push_back(NumberOf1(i));
-        }
-        return res;
-    }
-    
-    int NumberOf1(int num){
-        int count = 0;
-        while(num){
-            count++;
-            num = num & (num - 1);
-        }
-        return count;
-    }
-};
-```
-# 4. 哈希表
+
+# 2. 哈希表
 [哈希表](https://leetcode.com/problemset/all/?topicSlugs=hash-table)
 ## 136. Single Number
 ```C++
@@ -640,18 +619,7 @@ public:
 };
 ```
 
-```C++
-
-```
-
-```C++
-
-```
-
-```C++
-
-```
-# 5. 链表
+# 3. 链表
 [链表](https://leetcode.com/problemset/all/?topicSlugs=linked-list)
 ## 21. Merge Two Sorted Lists
 ```C++
@@ -1165,11 +1133,7 @@ int main() {
 }
 ```
 
-
-```C++
-```
-
-# 6. Math
+# 4. Math
 [Math](https://leetcode.com/problemset/all/?topicSlugs=math)
 ## 67. Add Binary
 ```C++
@@ -1231,7 +1195,7 @@ public:
 	}
 };
 ```
-# 7. 对撞指针
+# 5. 对撞指针
 [Two Pointers](https://leetcode.com/problemset/all/?topicSlugs=two-pointers)
 ## 125. Valid Palindrome
 ```C++
@@ -1293,14 +1257,7 @@ public:
 };
 ```
 
-```C++
-
-```
-
-```C++
-
-```
-# 8. 二分搜索
+# 7. 二分搜索
 [二分搜索](https://leetcode.com/problemset/all/?topicSlugs=binary-search)
 
 ## 278. First Bad Version
@@ -1344,6 +1301,153 @@ public:
 			else left = mid + 1;
 		}
 		return false;
+	}
+};
+```
+## 350. Intersection of Two Arrays II
+先给两个数组排序，然后用两个指针分别指向两个数组的起始位置，如果两个指针指的数字相等，则存入结果中，两个指针均自增1，如果第一个指针指的数字大，则第二个指针自增1，反之亦然。
+```C++
+class Solution {
+public:
+	vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
+		vector<int> res;
+		if (nums1.size() == 0 || nums2.size() == 0) return res;
+		sort(nums1.begin(), nums1.end());
+		sort(nums2.begin(), nums2.end());
+		int i = 0, j = 0;
+		while (i < nums1.size() && j < nums2.size()) {
+			if (nums1[i] == nums2[j]) {
+				res.push_back(nums1[i]);
+				i++;
+				j++;
+			} 
+			else if (nums1[i] < nums2[j]) {
+				i++;
+			}
+			else {
+				j++;
+			}
+		}
+		return res;
+	}	
+};
+```
+
+# 8. 分治
+[分治](https://leetcode.com/problemset/all/?topicSlugs=divide-and-conquer)
+
+
+```C++
+
+```
+
+# 15. 位操作
+[位操作](https://leetcode.com/problemset/all/?topicSlugs=bit-manipulation)
+
+[总结](https://leetcode.com/problems/sum-of-two-integers/discuss/84278/A-summary%3A-how-to-use-bit-manipulation-to-solve-problems-easily-and-efficiently)
+## 190. Reverse Bits
+```C++
+//运算符&优先级低于<<高于=
+class Solution {
+public:
+	uint32_t reverseBits(uint32_t n) {
+		n = (n << 16) | (n >> 16);
+		n = (n & 0x00ff00ff) << 8 | (n & 0xff00ff00) >> 8;
+		n = (n & 0x0f0f0f0f) << 4 | (n & 0xf0f0f0f0) >> 4;
+		n = (n & 0x33333333) << 2 | (n & 0xcccccccc) >> 2;
+		n = (n & 0x55555555) << 1 | (n & 0xaaaaaaaa) >> 1;
+		return n;
+	}
+};
+```
+## 191. Number of 1 Bits
+```C++
+class Solution {
+public:
+	int hammingWeight(uint32_t n) {
+		int count = 0;
+		while (n) {
+			count++;
+			n = n & (n - 1);
+		}
+		return count;
+	}
+};
+```
+## 268. Missing Number
+```C++
+class Solution {
+public:
+	int missingNumber(vector<int>& nums) {
+		if (nums.size() == 0) return -1;
+		sort(nums.begin(), nums.end());
+		for (int i = 0; i < nums.size(); i++) {
+			if (nums[i] != i) return i;
+		}
+		return nums.size();
+	}
+};
+```
+```C++
+
+```
+
+```C++
+
+```
+
+```C++
+
+```
+## 338. Counting Bits
+```C++
+class Solution {
+public:
+    vector<int> countBits(int num) {
+        vector<int> res;
+        for(int i = 0;i <= num; i++){
+            res.push_back(NumberOf1(i));
+        }
+        return res;
+    }
+    
+    int NumberOf1(int num){
+        int count = 0;
+        while(num){
+            count++;
+            num = num & (num - 1);
+        }
+        return count;
+    }
+};
+```
+## 342. Power of Four
+```C++
+//(num & num - 1) == 0只有最高位为1,0x55555555保证只有奇数为1的情况下才能为4的幂，负责可能是2的幂
+class Solution {
+public:
+	bool isPowerOfFour(int num) {
+		return num > 0 && (num & num-1) == 0 && (num & 0x55555555) != 0;
+	}
+};
+
+```
+## 371. Sum of Two Integers
+```C++
+class Solution {
+public:
+	int getSum(int a, int b) {
+		if (b == 0) return a;
+		/*int sum = a;
+		while (b != 0) {
+			sum = a ^ b;
+			b = (a&b) << 1;//进位
+			a = sum;
+		}
+		return sum;*/
+		//return getSum(a^b, (a&b) << 1);
+		if (b == 0) return a;
+		return getSum(a^b, ((a & b) & 0xffffffff) << 1);// limited to 32 bits，解决负数溢出问题
 	}
 };
 ```
