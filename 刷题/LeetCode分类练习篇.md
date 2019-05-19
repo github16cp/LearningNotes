@@ -1388,12 +1388,36 @@ public:
 	}
 };
 ```
+## 389. Find the Difference
 ```C++
-
+class Solution {
+public:
+	char findTheDifference(string s, string t) {
+		sort(s.begin(), s.end());
+		sort(t.begin(), t.end());
+		for (int i = 0; i < s.size(); i++) {
+			if (t[i] != s[i]) return t[i];
+		}
+		return t[t.size()-1];
+	}
+};
 ```
-
+## 461. Hamming Distance
 ```C++
-
+class Solution {
+public:
+	int hammingDistance(int x, int y) {
+		return numberOf1(x^y);
+	}
+	int numberOf1(int n) {
+		int count = 0;
+		while (n) {
+			count++;
+			n = n & (n - 1);
+		}
+		return count;
+	}
+};
 ```
 
 ```C++
@@ -1432,7 +1456,7 @@ public:
 };
 
 ```
-## 371. Sum of Two Integers
+
 ```C++
 class Solution {
 public:
