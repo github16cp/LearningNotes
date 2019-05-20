@@ -7,6 +7,7 @@
 * [6. 字符串](#6-字符串)
 * [7. 二分搜索](#7-二分搜索)
 * [8. 分治](#8-分治)
+* [9. 动态规划](#8-动态规划)
 * [15. 位操作](#15-位操作)
 <!-- GFM-TOC -->
 
@@ -1340,7 +1341,49 @@ public:
 ```C++
 
 ```
-
+# 9. 动态规划
+[动态规划](https://leetcode.com/problemset/all/?topicSlugs=dynamic-programming)
+## 70. Climbing Stairs
+```C++
+class Solution {
+public:
+	int climbStairs(int n) {
+		if (n == 0) return 0;
+		if (n == 1) return 1;
+		if (n == 2) return 2;
+		vector<int> res(n, -1);
+		res[0] = 1;
+		res[1] = 2;
+		int num = dp(res, n - 1);
+		return num;
+	}
+	int dp(vector<int> &res, int n) {
+		if (res[n] == -1)
+			res[n] = dp(res, n - 1) + dp(res, n - 2); 
+		return res[n];
+	}
+};
+```
+## 64. Minimum Path Sum
+```C++
+class Solution {
+public:
+	int minPathSum(vector<vector<int>>& grid) {
+		int m = grid.size();
+		int n = grid[0].size();
+		vector<vector<int>> sum(m, vector<int>(n, grid[0][0]));
+		for (int i = 1; i < m; i++)
+			sum[i][0] = sum[i - 1][0] + grid[i][0];
+		for (int j = 1; j < n; j++)
+			sum[0][j] = sum[0][j - 1] + grid[0][j];
+		for (int i = 1; i < m; i++)
+			for (int j = 1; j < n; j++)
+				sum[i][j] = min(sum[i][j - 1], sum[i - 1][j]) + grid[i][j];
+		return sum[m - 1][n - 1];
+	}
+};
+```
+[参考](https://leetcode.com/problems/minimum-path-sum/discuss/23457/C%2B%2B-DP)
 # 15. 位操作
 [位操作](https://leetcode.com/problemset/all/?topicSlugs=bit-manipulation)
 
