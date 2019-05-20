@@ -7,8 +7,36 @@
 * [6. 字符串](#6-字符串)
 * [7. 二分搜索](#7-二分搜索)
 * [8. 分治](#8-分治)
-* [9. 动态规划](#8-动态规划)
+* [9. 动态规划](#9-动态规划)
+* [10. 回溯](#10-回溯)
+* [11. 栈](#11-栈)
+* [12. 堆](#12-堆)
+* [13. 贪心算法](#13-贪心算法)
+* [14. 排序](#14-排序)
 * [15. 位操作](#15-位操作)
+* [16. 树](#16-树)
+* [17. 深度优先搜索](#17-深度优先搜索)
+* [18. 广度优先搜索](#18-广度优先搜索)
+* [19. 并查集UnionFind](#19-并查集UnionFind)
+* [20. 图](#20-图)
+* [21. 设计题Design](#21-设计题Design)
+* [22. 拓扑排序](#22-拓扑排序)
+* [23. 字典树Trie](#23-字典树Trie)
+* [24. 树状数组BinaryIndexedTree](#24-树状数组BinaryIndexedTree)
+* [25. 线段树SegmentTree](#25-线段树SegmentTree)
+* [26. 二叉搜索树](#26-二叉搜索树)
+* [27. 递归](#27-递归)
+* [28. 脑筋急转弯Brainteaser](#28-脑筋急转弯Brainteaser)
+* [29. Memoization](#29-Memoization)
+* [30. 队列](#30-队列)
+* [31. 极大极小值](#31-极大极小值)
+* [32. 蓄水池抽样问题ReservoirSampling](#32-蓄水池抽样问题ReservoirSampling)
+* [33. OrderedMap](#33-OrderedMap)
+* [34. 几何题Geometry](#34-几何题Geometry)
+* [35. Random](#35-Random)
+* [36. 拒绝采样RejectionSampling](#36-拒绝采样RejectionSampling)
+* [37. 滑动窗口](#37-滑动窗口)
+* [38. LineSweep](#38-LineSweep)
 <!-- GFM-TOC -->
 
 # 1. 数组
@@ -1384,6 +1412,19 @@ public:
 };
 ```
 [参考](https://leetcode.com/problems/minimum-path-sum/discuss/23457/C%2B%2B-DP)
+
+# 10. 回溯
+[回溯](https://leetcode.com/problemset/all/?topicSlugs=backtracking)
+```C++
+```
+# 11. 栈
+
+# 12. 堆
+
+# 13. 贪心算法
+
+# 14. 排序
+
 # 15. 位操作
 [位操作](https://leetcode.com/problemset/all/?topicSlugs=bit-manipulation)
 
@@ -1518,3 +1559,52 @@ public:
 	}
 };
 ```
+# 16. 树
+[树](https://leetcode.com/problemset/all/?topicSlugs=tree)
+# 17. 深度优先搜索
+[深度优先搜索](https://leetcode.com/problemset/all/?topicSlugs=depth-first-search)
+# 18. 广度优先搜索
+[广度优先搜索](https://leetcode.com/problemset/all/?topicSlugs=breadth-first-search)
+# 19. 并查集UnionFind
+[并查集](https://leetcode.com/problemset/all/?topicSlugs=union-find)
+# 20. 图
+[图](https://leetcode.com/problemset/all/?topicSlugs=graph)
+# 21. 设计题Design
+[Design](https://leetcode.com/problemset/all/?topicSlugs=design)
+# 22. 拓扑排序
+[拓扑排序](https://leetcode.com/problemset/all/?topicSlugs=topological-sort)
+# 23. 字典树Trie
+[字典树](https://leetcode.com/problemset/all/?topicSlugs=trie)
+# 24. 树状数组BinaryIndexedTree
+[树状数组](https://leetcode.com/problemset/all/?topicSlugs=binary-indexed-tree)
+# 25. 线段树SegmentTree
+[线段树](https://leetcode.com/problemset/all/?topicSlugs=segment-tree)
+# 26. 二叉搜索树
+[二叉搜索树](https://leetcode.com/problemset/all/?topicSlugs=binary-search-tree)
+# 27. 递归
+[递归](https://leetcode.com/problemset/all/?topicSlugs=recursion)
+# 28. 脑筋急转弯Brainteaser
+[Brainteaser](https://leetcode.com/problemset/all/?topicSlugs=brainteaser)
+# 29. Memoization
+[Memoization](https://leetcode.com/problemset/all/?topicSlugs=memoization)
+[参考](https://blog.csdn.net/feeltouch/article/details/45072725)
+是一种将`函数返回值缓存起来`的方法，Memoization 原理非常简单，就是把函数的每次执行结果都放入一个键值对或者数组中，在接下来的执行中，在键值对中查找是否已经有相应执行过的值，如果有，直接返回该值，没有执行函数体的求值部分。很明显找值尤其是在键值对中找值，比执行函数快多了。[参考](https://blog.csdn.net/feeltouch/article/details/45072725)
+
+# 30. 队列
+[队列](https://leetcode.com/problemset/all/?topicSlugs=queue)
+# 31. 极大极小值
+[Minimax](https://leetcode.com/problemset/all/?topicSlugs=minimax)
+# 32. 蓄水池抽样问题ReservoirSampling
+[蓄水池抽样问题](https://leetcode.com/problemset/all/?topicSlugs=reservoir-sampling)
+# 33. OrderedMap
+[OrderedMap](https://leetcode.com/problemset/all/?topicSlugs=ordered-map)
+# 34. 几何题Geometry
+[几何](https://leetcode.com/problemset/all/?topicSlugs=geometry)
+# 35. Random
+[Random](https://leetcode.com/problemset/all/?topicSlugs=random)
+# 36. 拒绝采样RejectionSampling
+[拒绝采样](https://leetcode.com/problemset/all/?topicSlugs=rejection-sampling)
+# 37. 滑动窗口
+[滑动窗口](https://leetcode.com/problemset/all/?topicSlugs=sliding-window)
+# 38. LineSweep
+[扫描线算法](https://leetcode.com/problemset/all/?topicSlugs=line-sweep)
