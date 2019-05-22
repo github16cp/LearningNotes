@@ -1418,13 +1418,51 @@ public:
 ```C++
 ```
 # 11. 栈
-
+[栈](https://leetcode.com/problemset/all/?topicSlugs=stack)
+## 1021. Remove Outermost Parentheses
+```C++
+class Solution {
+public:
+	string removeOuterParentheses(string S) {
+		string res = "";
+		int opened = 0;
+		for (auto c : S) {
+			if (c == '(' && opened++ > 0) res += c;
+			if (c == ')' && opened-- > 1) res += c;
+		}
+		return res;
+	}
+};
+```
+## 1047. Remove All Adjacent Duplicates In String
+```C++
+class Solution {
+public:
+	string removeDuplicates(string S) {
+		if (!S.length()) return S;
+		string results = "";
+		stack<char> res;
+		res.push(S[0]);
+		for (int i = 1; i < S.length(); i++) {
+			if (res.empty()) res.push(S[i]);
+			else if (S[i] == res.top()) res.pop();
+			else res.push(S[i]);
+		}
+		while (!res.empty()) {
+			results += res.top();
+			res.pop();
+		}
+		reverse(results.begin(), results.end());
+		return results;
+	}
+};
+```
 # 12. 堆
 
 # 13. 贪心算法
 
 # 14. 排序
-
+[排序](https://leetcode.com/problemset/all/?topicSlugs=sort)
 # 15. 位操作
 [位操作](https://leetcode.com/problemset/all/?topicSlugs=bit-manipulation)
 
@@ -1561,6 +1599,43 @@ public:
 ```
 # 16. 树
 [树](https://leetcode.com/problemset/all/?topicSlugs=tree)
+## 1022. Sum of Root To Leaf Binary Numbers
+```C++
+class Solution {
+public:
+	int sumRootToLeaf(TreeNode* root, int val = 0) {
+		if (root == nullptr) return 0;
+		val = (val * 2) + root->val;
+		return root->left == root->right ? val : sumRootToLeaf(root->left, val) + sumRootToLeaf(root->right, val);
+	}
+};
+```
+## 637. Average of Levels in Binary Tree
+```C++
+class Solution {
+public:
+	vector<double> averageOfLevels(TreeNode* root) {
+		vector<double> res;
+		if (root == nullptr) return res;
+		queue<TreeNode*> tree;
+		tree.push(root);
+		while (!tree.empty()) {
+			long temp = 0;
+			int s = tree.size();
+			for (int i = 0; i < s; i++) {
+				TreeNode* node = tree.front();
+				tree.pop();
+				if (node->left) tree.push(node->left);
+				if (node->right) tree.push(node->right);
+				temp += node->val;
+			}
+			res.push_back((double)temp / s);
+			temp = 0;
+		}
+        return res;
+	}
+};
+```
 # 17. 深度优先搜索
 [深度优先搜索](https://leetcode.com/problemset/all/?topicSlugs=depth-first-search)
 # 18. 广度优先搜索
