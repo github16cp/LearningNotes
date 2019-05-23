@@ -1640,6 +1640,118 @@ public:
 [深度优先搜索](https://leetcode.com/problemset/all/?topicSlugs=depth-first-search)
 # 18. 广度优先搜索
 [广度优先搜索](https://leetcode.com/problemset/all/?topicSlugs=breadth-first-search)
+## 993. Cousins in Binary Tree
+```C++
+class Solution {
+public:
+	bool isCousins(TreeNode* root, int x, int y) {
+		if (root == nullptr) return false;
+		queue<TreeNode*> tree;
+		tree.push(root);
+		while (!tree.empty()) {
+			int size = tree.size();
+			bool existX = false;
+			bool existY = false;
+			for (int i = 0; i < size; i++) {
+				TreeNode* node = tree.front();
+				tree.pop();
+				if (node->val == x)
+					existX = true;
+				if (node->val == y)
+					existY = true;
+				if (node->left && node->right) {
+					if (node->left->val == x && node->right->val == y)
+						return false;
+					if (node->right->val == x && node->left->val == y)
+						return false;
+				}				
+				if (node->left) tree.push(node->left);
+				if (node->right) tree.push(node->right);
+			}
+			if (existX && existY) return true;
+		}
+		return false;
+	}
+};
+```
+## 690. Employee Importance
+本地测试通过，但是AC不了，不知道原因在哪？
+```C++
+class Solution {
+public:
+	int getImportance(vector<Employee*> employees, int id) {		
+		int res = 0;
+		int size = employees.size();
+		if (size == 0) return 0;
+		sort(employees.begin(), employees.end());
+		queue<int> sub;
+		sub.push(id);
+		for (auto i : employees) {
+			int nowid = sub.front();
+			if (i->id == nowid) {
+				res += i->importance;
+				if (i->subordinates.size()) {
+					for (auto j : i->subordinates)
+						sub.push(j);
+				}
+				sub.pop();
+			}		
+		}
+		return res;
+	}
+};
+```
+估计方法不对，加了cmp也不对
+```C++
+bool cmp(Employee* a, Employee* b) {
+	return a->id < b->id;
+}
+
+class Solution {
+public:
+	int getImportance(vector<Employee*> employees, int id) {		
+		int res = 0;
+		int size = employees.size();
+		if (size == 0) return 0;
+		sort(employees.begin(), employees.end(),cmp);
+		queue<int> sub;
+		sub.push(id);
+		for (auto i : employees) {
+			int nowid = sub.front();
+			if (i->id == nowid) {
+				res += i->importance;
+				if (i->subordinates.size()) {
+					for (auto j : i->subordinates)
+						sub.push(j);
+				}
+				sub.pop();
+			}		
+		}
+		return res;
+	}
+};
+```
+AC版本
+```C++
+class Solution {
+public:
+	int getImportance(vector<Employee*> employees, int id) {		
+		unordered_map<int, Employee*> employee;
+
+		for (const auto em : employees) {
+			employee[em->id] = em;
+		}
+		return computeImportance(employee, id);
+	}
+	int computeImportance(unordered_map<int, Employee*>& employee, const int id) {
+		int sum = employee[id]->importance;
+		for (const auto em : employee[id]->subordinates) {
+			sum += computeImportance(employee, em);
+		}
+		return sum;
+	}
+};
+```
 # 19. 并查集UnionFind
 [并查集](https://leetcode.com/problemset/all/?topicSlugs=union-find)
 # 20. 图
