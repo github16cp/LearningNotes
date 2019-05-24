@@ -1460,7 +1460,45 @@ public:
 # 12. 堆
 
 # 13. 贪心算法
-
+[贪心](https://leetcode.com/problemset/all/?topicSlugs=greedy)
+## 455. Assign Cookies
+```C++
+class Solution {
+public:
+	int findContentChildren(vector<int>& g, vector<int>& s) {
+		if (!g.size() || !s.size()) return 0;
+		sort(g.begin(), g.end());
+		sort(s.begin(), s.end());
+		vector<int>::iterator it = s.begin();
+		int res = 0;
+		int i = 0;
+		while (i < g.size()) {
+			if (it == s.end()) break;
+			if (g[i] <= *it) {
+				res++;
+				it = s.erase(it);
+				i++;
+			}
+			else {
+				it = s.erase(it);
+			}
+		}
+		//for (int i = 0; i < g.size(); i++) {
+			
+			/*else {
+				int sum = *it;
+				it = s.erase(it);
+				while (it != s.end() && g[i] > sum) {
+					sum += *it;
+					it = s.erase(it);
+				}
+				if (g[i] <= sum) res++;
+			}*/
+		//}
+		return res;
+	}
+};
+```
 # 14. 排序
 [排序](https://leetcode.com/problemset/all/?topicSlugs=sort)
 # 15. 位操作
@@ -1638,6 +1676,41 @@ public:
 ```
 # 17. 深度优先搜索
 [深度优先搜索](https://leetcode.com/problemset/all/?topicSlugs=depth-first-search)
+## 257. Binary Tree Paths
+```C++
+class Solution {
+public:
+	vector<string> binaryTreePaths(TreeNode* root) {
+		vector<string> res;
+		if (root == nullptr) return res;
+		stack<TreeNode*> s;
+		stack<string> path;
+		s.push(root);
+		path.push(to_string(root->val));
+		while (!s.empty()) {
+			TreeNode* node = s.top();
+			s.pop();
+			string pathtmp = path.top();
+			path.pop();
+
+			if (node->left == nullptr && node->right == nullptr) {
+				res.push_back(pathtmp);
+				continue;
+			}
+
+			if (node->left) {
+				s.push(node->left);
+				path.push(pathtmp + "->" + to_string(node->left->val));
+			}
+
+			if (node->right) {
+				s.push(node->right);
+				path.push(pathtmp + "->" + to_string(node->right->val));
+			}			
+		}
+	}
+};
+```
 # 18. 广度优先搜索
 [广度优先搜索](https://leetcode.com/problemset/all/?topicSlugs=breadth-first-search)
 ## 993. Cousins in Binary Tree
