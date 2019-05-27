@@ -1415,7 +1415,30 @@ public:
 
 # 10. 回溯
 [回溯](https://leetcode.com/problemset/all/?topicSlugs=backtracking)
+## 784. Letter Case Permutation
 ```C++
+class Solution {
+public:
+	vector<string> letterCasePermutation(string S) {
+		vector<string> res;
+		trackback(S, 0, res);
+		return res;
+
+	}
+	void trackback(string &s, int i, vector<string> &res) {
+		if (i == s.size()) {
+			res.push_back(s);
+			return;
+		}
+		char c = s[i];
+		s[i] = islower(c) ? toupper(c) : tolower(c);
+		trackback(s, i + 1, res);
+		if (isalpha(c)) {
+			s[i] = c;
+			trackback(s, i + 1, res);
+		}
+	}
+};
 ```
 # 11. 栈
 [栈](https://leetcode.com/problemset/all/?topicSlugs=stack)
