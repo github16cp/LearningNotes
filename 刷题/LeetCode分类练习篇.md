@@ -397,6 +397,31 @@ public:
 	}
 };
 ```
+## 905. Sort Array By Parity
+```C++
+
+``class Solution {
+public:
+	vector<int> sortArrayByParity(vector<int>& A) {
+		int left = 0, right = A.size() - 1;
+		while (left < right) {
+			if (A[left] % 2 != 0 && A[right] % 2 == 0) {
+				int temp = A[left];
+				A[left] = A[right];
+				A[right] = temp;
+				left++;
+				right--;
+			}
+			else if (A[left] % 2 == 0) {
+				left++;
+			}
+			else if (A[right] % 2 != 0) {
+				right--;
+			}			
+		}
+		return A;
+	}
+};`
 # 6. 字符串
 [字符串](https://leetcode.com/problemset/all/?topicSlugs=string)
 ## 344. Reverse String
