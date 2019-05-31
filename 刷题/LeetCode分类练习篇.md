@@ -41,6 +41,140 @@
 
 # 1. 数组
 [array类题目](https://leetcode.com/problemset/all/?topicSlugs=array)
+## 509. Fibonacci Number
+```C++
+class Solution {
+public:
+	int fib(int N) {
+		if (N == 0 || N == 1) return N;
+		int first = 0, second = 1, third = 0;
+		for (int i = 0; i < N - 1; i++) {
+			third = first + second;
+			first = second;
+			second = third;
+		}
+		return third;
+	}
+};
+```
+## 922. Sort Array By Parity II
+```C++
+class Solution {
+public:
+	vector<int> sortArrayByParityII(vector<int>& A) {
+		if (!A.size()) return A;
+		for (int i = 0; i < A.size(); i++) {
+			if ((i % 2 == 0 && A[i] % 2 == 0) || (i % 2 != 0 && A[i] % 2 != 0)) 
+				continue;
+			for (int j = i + 1; j < A.size(); j++) {
+				if ((i % 2 == 0 && A[j] % 2 == 0) || (i % 2 != 0 && A[j] % 2 != 0)) {
+					int tmp = A[i];
+					A[i] = A[j];
+					A[j] = tmp;
+					break;
+				}
+			}
+		}
+		return A;
+	}
+};
+```
+## 561. Array Partition I
+```C++
+class Solution {
+public:
+	int arrayPairSum(vector<int>& nums) {
+		int sum = 0;
+		sort(nums.begin(), nums.end());
+		for (int i = 0; i < nums.size(); i += 2) {
+			sum += nums[i];
+		}
+		return sum;
+	}
+};
+```
+## 1051. Height Checker
+```C++
+class Solution {
+public:
+	int heightChecker(vector<int>& heights) {
+		int count = 0;
+		vector<int> tmp(heights);
+		sort(tmp.begin(), tmp.end());
+		for (int i = 0; i < tmp.size(); i++) {
+			if (heights[i] != tmp[i])
+				count++;
+		}
+		return count;
+	}
+};
+```
+## 977. Squares of a Sorted Array
+```C++
+class Solution {
+public:
+	vector<int> sortedSquares(vector<int>& A) {
+		for (int i = 0; i < A.size(); i++) {
+			A[i] = A[i] * A[i];
+		}
+		sort(A.begin(), A.end());
+		return A;
+	}
+};
+```
+## 832. Flipping an Image
+```C++
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+class Solution {
+public:
+	vector<vector<int>> flipAndInvertImage(vector<vector<int>>& A) {
+		int m = A.size();
+		int n = A[0].size();
+		if (m == 0) return A;
+		for (int i = 0; i < m; i++) {
+			reverse(A[i].begin(), A[i].end());
+		}
+		for (int i = 0; i < m; i++) {
+			for (int j = 0; j < n; j++) {
+				A[i][j] = 1 - A[i][j];
+			}
+		}
+		return A;
+	}
+};
+
+int main()
+{
+	Solution s;
+	int m = 4;
+	vector<int> tmp(m,0);
+	vector<vector<int> > input;
+	for (int j = 0; j < m; j++) {
+		for (int i = 0; i < m; i++) {
+			cin >> tmp[i];
+		}
+		input.push_back(tmp);
+	}
+	/*for (int i = 0; i < m; i++)
+		for (int j = 0; j < m; j++)
+			cout << input[i][j] << " ";*/
+	
+	vector<vector<int> > res;
+	res = s.flipAndInvertImage(input);
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < m; j++) {
+			cout << res[i][j] << " ";
+		}
+		cout << endl;
+	}
+	system("pause");
+	return 0;
+}
+```
 ## 15. 3Sum
 二分查找，寻找3个数相加为0。
 ```C++
@@ -399,8 +533,7 @@ public:
 ```
 ## 905. Sort Array By Parity
 ```C++
-
-``class Solution {
+class Solution {
 public:
 	vector<int> sortArrayByParity(vector<int>& A) {
 		int left = 0, right = A.size() - 1;
@@ -421,7 +554,8 @@ public:
 		}
 		return A;
 	}
-};`
+};
+```
 # 6. 字符串
 [字符串](https://leetcode.com/problemset/all/?topicSlugs=string)
 ## 344. Reverse String
