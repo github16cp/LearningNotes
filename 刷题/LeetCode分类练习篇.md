@@ -41,6 +41,175 @@
 
 # 1. 数组
 [array类题目](https://leetcode.com/problemset/all/?topicSlugs=array)
+```C++
+```
+
+```C++
+```
+
+```C++
+```
+## 999. Available Captures for Rook
+```C++
+class Solution {
+public:
+	int numRookCaptures(vector<vector<char>>& board) {
+		for (int i = 0; i < board.size(); i++) 
+			for (int j = 0; j < board[0].size(); j++)
+				if (board[i][j] == 'R')
+					return cap(board, i, j, 0, 1) + cap(board, i, j, 0, -1) + cap(board, i, j, 1, 0) + cap(board, i, j, -1, 0);
+		return 0;
+	}
+
+	int cap(vector<vector<char> >& board, int x, int y, int dx, int dy) {
+		while (x >= 0 && x < board.size() && y >= 0 && y < board[x].size() && board[x][y] != 'B') {
+			if (board[x][y] == 'p') return 1;
+			x += dx; y += dy;
+		}
+		return 0;
+	}
+};
+```
+## 1002. Find Common Characters
+```C++
+class Solution {
+public:
+	vector<string> commonChars(vector<string>& A) {
+		vector<string> res;
+		vector<int> cnt(26, INT_MAX);
+		for (auto s : A) {
+			vector<int> cnt_s(26, 0);
+			for (auto c : s) ++cnt_s[c - 'a'];
+			for (int i = 0; i < 26; i++) cnt[i] = min(cnt[i], cnt_s[i]);
+		}
+		for (int i = 0; i < 26; i++)
+			for (int j = 0; j < cnt[i]; j++) res.push_back(string(1, i + 'a'));
+		return res;
+	}
+};
+```
+## 985. Sum of Even Numbers After Queries
+```C++
+class Solution {
+public:
+	vector<int> sumEvenAfterQueries(vector<int>& A, vector<vector<int>>& queries) {
+		vector<int> answer(queries.size(), 0);
+		int sum = 0;
+		for (auto i : A) {
+			if (i % 2 == 0)
+				sum += i;
+		}
+		//A[index]是偶数，加奇数，减去A[index]；A[index]是偶数，加偶数，加上val(减去A[index])
+		for (int i = 0; i < queries.size(); i++) {
+			int val = queries[i][0];
+			int index = queries[i][1];
+			if (A[index] % 2 == 0) {
+				sum -= A[index];
+			}
+			A[index] = A[index] + val;
+			if (A[index] % 2 == 0) {
+				sum += A[index];
+			}
+			answer[i] = sum;
+		}
+		return answer;
+	}
+};
+```
+## 867. Transpose Matrix
+```C++
+class Solution {
+public:
+	vector<vector<int>> transpose(vector<vector<int>>& A) {
+		int m = A.size();
+		int n = A[0].size();
+		vector<vector<int>> res(n, (vector<int>(m, 0)));
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				res[i][j] = A[j][i];
+			}
+		}
+		return res;
+	}
+};
+```
+## 566. Reshape the Matrix
+```C++
+class Solution {
+public:
+	vector<vector<int>> matrixReshape(vector<vector<int>>& nums, int r, int c) {
+		vector<vector<int>> res(r, (vector<int>(c, 0)));
+		int m = nums.size(), n = nums[0].size();
+		if (r * c != m * n) return nums;
+		for (int i = 0; i < r*c; i++) {
+			res[i/c][i%c] = nums[i/n][i%n];
+		}
+		return res;
+	}
+};
+```
+## 766. Toeplitz Matrix
+```C++
+class Solution {
+public:
+	bool isToeplitzMatrix(vector<vector<int>>& matrix) {
+		for (int i = 0; i < matrix.size(); i++)
+			for (int j = 0; j < matrix[0].size(); j++)
+				if (matrix[i][j] != matrix[i + 1][j + 1]) return false;
+		return true;
+	}
+};
+```
+## 283. Move Zeroes
+```C++
+class Solution {
+public:
+	void moveZeroes(vector<int>& nums) {
+		int cnt = 0;
+		for (vector<int>::iterator it = nums.begin(); it != nums.end();) {
+			if (*it == 0) {
+				cnt++;
+				it = nums.erase(it);
+			}
+			else it++;
+		}
+		for (int i = 0; i < cnt; i++)
+			nums.push_back(0);
+	}
+};
+```
+## 896. Monotonic Array
+```C++
+class Solution {
+public:
+	bool isMonotonic(vector<int>& A) {
+		bool inc = true, dec = true;
+		for (int i = 0; i < A.size() - 1; i++)
+			inc &= A[i + 1] >= A[i], dec &= A[i + 1] <= A[i];
+		return inc || dec;
+	}
+};
+```
+## 485. Max Consecutive Ones
+```C++
+class Solution {
+public:
+	int findMaxConsecutiveOnes(vector<int>& nums) {
+		int maxSum = INT_MIN;
+		if (!nums.size()) return maxSum;
+		int curSum = nums[0];
+		for (int i = 1; i < nums.size(); i++) {
+			if (nums[i] == nums[i - 1]) curSum += nums[i];
+			else {
+				if (curSum > maxSum) maxSum = curSum;
+				curSum = nums[i];
+			}
+		}
+		if (curSum > maxSum) maxSum = curSum;
+		return maxSum;
+	}
+};
+```
 ## 509. Fibonacci Number
 ```C++
 class Solution {
