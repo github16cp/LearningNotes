@@ -41,13 +41,74 @@
 
 # 1. 数组
 [array类题目](https://leetcode.com/problemset/all/?topicSlugs=array)
+## 1013. Partition Array Into Three Parts With Equal Sum
 ```C++
-```
+//[-1,1,-1,1]
+class Solution {
+public:
+	bool canThreePartsEqualSum(vector<int>& A) {
+		int total = accumulate(A.begin(), A.end(), 0);
+		if (total % 3 != 0) return false;
+		int parts = 0;
+		for (int i = 0, sum = 0; i < A.size() && parts < (total != 0 ? 2 : 3); ++i) {
+			sum += A[i];
+			if (sum == total / 3) ++parts, sum = 0;
+		}
+		return parts == (total != 0 ? 2 : 3);
+	}
+};
 
-```C++
 ```
-
+## 888. Fair Candy Swap
 ```C++
+class Solution {
+public:
+	vector<int> fairCandySwap(vector<int>& A, vector<int>& B) {
+		int sumA = accumulate(A.begin(), A.end(), 0);
+		int sumB = accumulate(B.begin(), B.end(), 0);
+		int total = (sumA + sumB) / 2;
+		for (auto i : A) {
+			int item = total - (sumA - i);
+			for (auto j : B)
+				if (j == item) return {i,item};
+		}
+		return {};
+	}
+};
+```
+## 448. Find All Numbers Disappeared in an Array
+```C++
+class Solution {
+public:
+	vector<int> findDisappearedNumbers(vector<int>& nums) {
+		vector<int> res;
+		for (int i = 0; i < nums.size(); i++) {
+			int val = abs(nums[i]) - 1;
+			if (nums[val] > 0) {
+				nums[val] = -nums[val];
+			}
+		}
+
+		for (int i = 0; i < nums.size(); i++) {
+			if (nums[i] > 0) {
+				res.push_back(i + 1);
+			}
+		}
+
+		return res;
+	}
+};
+```
+## 717. 1-bit and 2-bit Characters
+```C++
+class Solution {
+public:
+	bool isOneBitCharacter(vector<int>& bits) {
+		int ones = 0;
+		for (int i = bits.size() - 2; i >= 0 && bits[i] != 0; --i) ones++;
+		return ones % 2 == 0;
+	}
+};
 ```
 ## 999. Available Captures for Rook
 ```C++
