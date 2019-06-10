@@ -2377,7 +2377,7 @@ public:
 ```
 
 ## 595. Big Countries
-```
+```SQL
 # Write your MySQL query statement below
 SELECT name, population, area
 FROM World
@@ -2438,6 +2438,98 @@ public:
 			return false;
 	}
 };
+```
+## 1078. Occurrences After Bigram
+```C++
+class Solution {
+public:
+	vector<string> findOcurrences(string text, string first, string second) {
+		vector<string> tmp,res;
+		string str = "";
+		for (int i = 0; i < text.length(); i++) {			
+			if (text[i] != ' ') str += text[i];
+			else {
+				tmp.push_back(str);
+				str = "";
+			}
+		}
+		tmp.push_back(str);
+		for (int i = 0; i < tmp.size() - 2; i++) {
+			if (tmp[i] == first && tmp[i + 1] == second) res.push_back(tmp[i + 2]);
+		}
+		return res;
+	}
+};
+```
+## 852. Peak Index in a Mountain Array
+```C++
+class Solution {
+public:
+	int peakIndexInMountainArray(vector<int>& A) {
+		int i = 0;
+		for (; i < A.size() - 1; i++) {
+			if (A[i] > A[i + 1]) break;
+		}
+		return i;
+	}
+};
+```
+## 933. Number of Recent Calls
+```C++
+class RecentCounter {
+public:
+	queue<int> q;
+	RecentCounter() {
+
+	}
+
+	int ping(int t) {
+		q.push(t);
+		while (q.front() < t - 3000)
+			q.pop();
+		return q.size();
+	}
+};
+```
+## 944. Delete Columns to Make Sorted
+```C++
+class Solution {
+public:
+	int minDeletionSize(vector<string>& A) {
+		if (A.size() == 0) return 0;
+		vector<char> inc(A[0].size(), 'a');
+		vector<bool> flag(A[0].size(), true);
+		for (auto s : A) {
+			for (int i = 0; i < s.size(); i++) {
+				if (s[i] >= inc[i]) inc[i] = s[i];
+				else flag[i] = false;
+			}
+		}
+		return count(flag.begin(),flag.end(),false);
+	}
+};
+```
+## 627. Swap Salary
+```SQL
+# Write your MySQL query statement below
+update salary set sex= CHAR(ASCII('f') + ASCII('m') - ASCII(sex));
+```
+## 700. Search in a Binary Search Tree
+```C++
+class Solution {
+public:
+	TreeNode* searchBST(TreeNode* root, int val) {
+		if (root == nullptr) return nullptr;
+		if (root->val == val) return root;
+		else if (root->val > val) return searchBST(root->left, val);
+		else return searchBST(root->right, val);
+	}
+};
+
+```
+
+```C++
+
 ```
 
 ```C++
