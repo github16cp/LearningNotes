@@ -37,6 +37,7 @@
 * [36. 拒绝采样RejectionSampling](#36-拒绝采样RejectionSampling)
 * [37. 滑动窗口](#37-滑动窗口)
 * [38. LineSweep](#38-LineSweep)
+* [39. 未分类](#39-未分类)
 <!-- GFM-TOC -->
 
 # 1. 数组
@@ -788,6 +789,37 @@ public:
 ```
 # 6. 字符串
 [字符串](https://leetcode.com/problemset/all/?topicSlugs=string)
+## 557. Reverse Words in a String III
+```C++
+class Solution {
+public:
+	string reverseWords(string s) {
+		string res = "";
+		stack<char> str;
+		for (int i = 0; i < s.length(); i++) {
+			if (s[i] != ' ') str.push(s[i]);
+			if (s[i] == ' ') {
+				while (!str.empty()) {
+					res += str.top();
+					str.pop();
+				}
+				res += ' ';
+			}
+		}
+		while (!str.empty()) {
+			res += str.top();
+			str.pop();
+		}
+		return res;
+	}
+};
+```
+
+```C++
+```
+
+```C++
+```
 ## 344. Reverse String
 ```C++
 class Solution {
@@ -1553,6 +1585,38 @@ int main() {
 
 # 4. Math
 [Math](https://leetcode.com/problemset/all/?topicSlugs=math)
+## 942. DI String Match
+```C
+class Solution {
+public:
+	vector<int> diStringMatch(string S) {
+		int left = count(S.begin(), S.end(), 'D'), right = left;
+		vector<int> res = { left };
+		for (auto &c : S) {
+			int num = (c == 'I') ? ++right : --left;
+			res.push_back(num);
+		}
+		return res;
+	}
+};
+```
+## 728. Self Dividing Numbers
+```C++
+class Solution {
+public:
+	vector<int> selfDividingNumbers(int left, int right) {
+		vector<int> res;
+		for (int i = left; i <= right; i++) {
+			int j = i;
+			for (; j > 0; j /= 10) {
+				if ((j % 10 == 0) || (i % (j % 10) != 0)) break;
+			}
+			if (j == 0) res.push_back(i);
+		}
+		return res;
+	}
+};
+```
 ## 67. Add Binary
 ```C++
 class Solution {
@@ -2280,3 +2344,102 @@ public:
 [滑动窗口](https://leetcode.com/problemset/all/?topicSlugs=sliding-window)
 # 38. LineSweep
 [扫描线算法](https://leetcode.com/problemset/all/?topicSlugs=line-sweep)
+
+# 39. 未分类
+## 771. Jewels and Stones
+```C++
+class Solution {
+public:
+	int numJewelsInStones(string J, string S) {
+		int num = 0;
+		for (int i = 0; i < J.size(); i++) {
+			for (int j = 0; j < S.size(); j++) {
+				if (J[i] == S[j]) num++;
+			}
+		}
+		return num;
+	}
+};
+```
+## 938. Range Sum of BST
+```C++
+class Solution {
+public:
+	int rangeSumBST(TreeNode* root, int L, int R) {
+		if (root == nullptr) return 0;
+		int sum = 0;
+		if (root->val > R) { sum += rangeSumBST(root->left, L, R); }
+		if (root->val < L) { sum += rangeSumBST(root->right, L, R); }
+		if (root->val >= L && root->val <= R) { sum += root->val + rangeSumBST(root->left, L, R) + rangeSumBST(root->right, L, R); }
+		return sum;
+	}
+};
+```
+
+## 595. Big Countries
+```
+# Write your MySQL query statement below
+SELECT name, population, area
+FROM World
+WHERE area > 3000000 
+
+UNION
+
+SELECT name, population, area
+FROM World
+WHERE population > 25000000
+```
+## 804. Unique Morse Code Words
+```C++
+class Solution {
+public:
+	int uniqueMorseRepresentations(vector<string>& words) {
+		if (words.size() == 0) return 0;
+		vector<string> table = { ".-","-...","-.-.","-..",".","..-.",
+			"--.","....","..",".---","-.-",".-..","--","-.","---",".--.",
+			"--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.." };
+		for (int j = 0; j < words.size(); j++) {
+			string s = "";
+			for (int i = 0; i < words[j].size(); i++) {
+				s += table[words[j][i] - 'a'];
+			}
+			words[j] = s;
+		}
+		sort(words.begin(), words.end());
+		int res = 1;
+		for (int i = 0; i < words.size() - 1; i++) {
+			if (words[i] != words[i + 1]) res++;
+		}
+		return res;
+	}
+};
+```
+## 961. N-Repeated Element in Size 2N Array
+```C++
+class Solution {
+public:
+	int repeatedNTimes(vector<int>& A) {
+		int i = 0, j = 0, n = A.size();
+		while (i == j || A[i] != A[j])
+			i = rand() % n, j = rand() % n;
+		return A[i];
+	}
+};
+
+```
+## 657. Robot Return to Origin
+```C++
+class Solution {
+public:
+	bool judgeCircle(string moves) {
+		if (count(moves.begin(), moves.end(), 'L') == count(moves.begin(), moves.end(), 'R') && count(moves.begin(), moves.end(), 'U') == count(moves.begin(), moves.end(), 'D'))
+			return true;
+		else
+			return false;
+	}
+};
+```
+
+```C++
+
+```
