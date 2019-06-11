@@ -2527,8 +2527,75 @@ public:
 };
 
 ```
-
+## 590. N-ary Tree Postorder Traversal
 ```C++
+class Solution {
+public:
+	vector<int> postorder(Node* root) {	
+		if (root == nullptr) return {};
+		vector<int> res;
+		stack<Node*> tmp;
+		tmp.push(root);
+		while (!tmp.empty()) {
+			Node* node = tmp.top();
+			tmp.pop();
+			for (int i = 0; i < node->children.size(); i++) tmp.push(node->children[i]);
+			res.push_back(node->val);
+		}
+		reverse(res.begin(), res.end());
+		return res;
+	}
+};
+```
+## 589. N-ary Tree Preorder Traversal
+```C++
+class Solution {
+public:
+	vector<int> preorder(Node* root) {
+		if (root == nullptr) return {};
+		vector<int> res;
+		dfs(root, res);
+		return res;
+	}
+
+	void dfs(Node* root, vector<int>& res) {
+		if (root == nullptr) return;
+		res.push_back(root->val);
+		for (auto i : root->children)
+			dfs(i, res);
+	}
+};
+```
+## 965. Univalued Binary Tree
+```C++
+class Solution {
+public:
+	bool isUnivalTree(TreeNode* root) {
+		if (root == nullptr) return true;
+		int tmp = root->val;
+		if (root->right != nullptr && root->left != nullptr) 
+			return (tmp == root->left->val) && (tmp == root->right->val) && isUnivalTree(root->left) && isUnivalTree(root->right);
+		else if (root->right != nullptr && root->left == nullptr)
+			return (tmp == root->right->val) && isUnivalTree(root->right);
+		else if (root->right == nullptr && root->left != nullptr)
+			return (tmp == root->left->val) && isUnivalTree(root->left);
+		else return true;
+        return false;		
+	}
+};
+```
+## 559. Maximum Depth of N-ary Tree
+```C++
+class Solution {
+public:
+	int maxDepth(Node* root) {
+		if (root == nullptr) return 0;
+		int res = 1;
+		for (auto i : root->children)
+			res = max(res, maxDepth(i) + 1);
+		return res;
+	}
+};
 
 ```
 
