@@ -2598,7 +2598,27 @@ public:
 };
 
 ```
-
+## 788. Rotated Digits
 ```C++
-
+class Solution {
+public:
+	int rotatedDigits(int N) {	
+		int res = 0;
+		for (int i = 0; i <= N; i++) {
+			string s = to_string(i);
+			int j = 0;
+			string str = s;
+			for (; j < s.size(); j++) {
+				if(s[j] == '3' || s[j] == '4' || s[j] == '7') break;
+				if (s[j] == '2') s[j] = '5';
+				else if (s[j] == '5') s[j] = '2';
+				else if (s[j] == '6') s[j] = '9';
+				else if (s[j] == '9') s[j] = '6';
+				else {}
+			}
+			if (j == s.size() && str != s) res++;
+		}
+		return res;
+	}
+};
 ```
