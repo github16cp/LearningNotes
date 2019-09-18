@@ -27,6 +27,23 @@ Git易于学习，占地面积小，性能极快。它超越了诸如Subversion�
 9. git rebase
 10. git tag
 
+## 常用命令
+1、更新工作树
+```
+git add *
+```
+2、提交当前修改
+```
+git commit -m "message"
+```
+3、推送到远程服务器
+```
+git push origin master
+```
+4、从远程服务器下拉
+```
+git pull
+```
 [参考](https://git-scm.com/docs/giteveryday)
 ## Error and Solution
 **Error 1** 
