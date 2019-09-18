@@ -69,6 +69,7 @@
 * [64. 滑动窗口的最大值](#64-滑动窗口的最大值)
 * [65. 矩阵中的路径](#65-矩阵中的路径)
 * [66. 机器人的运动范围](#66-机器人的运动范围)
+* [67. 剪绳子](#67-剪绳子)
 <!-- GFM-TOC -->
 
 # 前言
@@ -4926,6 +4927,43 @@ public:
 int main() {
 	Solution s;
 	cout << s.movingCount(18, 3, 4);
+	system("pause");
+	return 0;
+}
+```
+
+# 67. 剪绳子
+
+给你一根长度为n的绳子，请把绳子剪成m段（m、n都是整数，n>1并且m>1），每段绳子的长度记为k[0],k[1],...,k[m]。请问k[0]xk[1]x...xk[m]可能的最大乘积是多少？例如，当绳子的长度是8时，我们把它剪成长度分别为2、3、3的三段，此时得到的最大乘积是18。
+
+输入：
+`n`
+
+输出：乘积
+
+贪心算法
+-----------------------------------------------------
+```C++
+#include <iostream>
+#include <list>
+using namespace std;
+
+int cutRope(int number) {
+	if (number < 2) return 0;
+	if (number == 2) return 1;
+	if (number == 3) return 2;
+
+	int timesof3 = number / 3;
+	if (number - timesof3*3 == 1) timesof3--;
+	
+	int timesof2 = (number - timesof3 * 3) / 2;
+
+	return (int)(pow(2, timesof2))*(int)(pow(3, timesof3));
+}
+int main() {
+	int n;
+	cin >> n;
+	cout << cutRope(n) << endl;
 	system("pause");
 	return 0;
 }
